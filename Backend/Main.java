@@ -44,7 +44,6 @@ public class Main extends Canvas implements Runnable {
     @Override
     //game loop from https://www.youtube.com/watch?v=1gir2R7G9ws&t=631s
     public void run() {
-        // TODO Auto-generated method stub
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns =1000000000/amountOfTicks;
