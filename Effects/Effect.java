@@ -9,7 +9,7 @@ public class Effect {
 
     public Effect (String effect, Entity mob)
     {
-        this.effect=String.toUpperCase(effect);
+        this.effect=effect.toUpperCase();
 
         switch (effect) {
             case "slow":
