@@ -9,11 +9,12 @@ public class Effect {
 
     public Effect (String effect, Entity mob)
     {
+        stength=1;
         this.effect=effect.toUpperCase();
 
         switch (effect) {
             case "slow":
-
+                duration = 2+stength;
                 mob.getSpeed();
                 break;
             case "burn" :
