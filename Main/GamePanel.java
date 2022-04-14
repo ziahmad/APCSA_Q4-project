@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel implements Runnable {
    //set defaul size for game window and tiles
    final int TILE_SIZE_START = 16;
-   final int SCALE = 4;
+   final int SCALE = 3;
 
    final int TILE_SIZE = SCALE*TILE_SIZE_START;
    final int MAX_SCREEN_COL =16;
