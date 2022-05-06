@@ -26,6 +26,16 @@ public class Player extends Entity{
         speed =2*defaultSpeed;
     }
 
+    public void getPlayerImage ()
+    {
+        try {
+            
+        } catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+
+    }
     public void update()
     {
         if (keyH.shiftPressed)
