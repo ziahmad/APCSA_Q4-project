@@ -5,32 +5,30 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
+import Entity.Player;
+
 public class GamePanel extends JPanel implements Runnable {
    //set defaul size for game window and tiles
-   final int TILE_SIZE_START = 16;
-   final int SCALE = 3;
+   public final int TILE_SIZE_START = Consts.TILE_SIZE_START;
+   public final int SCALE = Consts.SCALE;
 
-   final int TILE_SIZE = SCALE*TILE_SIZE_START;
-   final int MAX_SCREEN_COL =16;
-   final int MAX_SCREEN_ROW =16;
+   public final int TILE_SIZE = Consts.SCALE*Consts.TILE_SIZE_START;
+   public final int MAX_SCREEN_COL =Consts.MAX_SCREEN_COL;
+   public final int MAX_SCREEN_ROW =Consts.MAX_SCREEN_ROW;
 
-   final int SCREEN_WIDTH = MAX_SCREEN_COL*TILE_SIZE;
-   final int SCREEN_HEIGHT = MAX_SCREEN_ROW*TILE_SIZE;
+   public final int SCREEN_WIDTH = Consts.MAX_SCREEN_COL*Consts.TILE_SIZE;
+   public final int SCREEN_HEIGHT = Consts.MAX_SCREEN_ROW*Consts.TILE_SIZE;
 
-   //fps
+   //fps goal
    int fps=60;
 
    KeyHandler keyH = new KeyHandler();
    //to make the game run over time
    Thread gThread;
+   Player player = new Player(this, keyH);
+      
 
-   //player default position
-   double x = SCREEN_WIDTH/2;
-   double y = SCREEN_HEIGHT/2;
-   double sprintScale = 1.5;
-   final double defaultSpeed = 2*SCALE;
-   double speed = defaultSpeed;
-
+   
    public GamePanel()
    {
       this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
@@ -38,11 +36,13 @@ public class GamePanel extends JPanel implements Runnable {
       this.setDoubleBuffered(true);
       this.addKeyListener(keyH);
       this.setFocusable(true);
+      
    }
 
    public void startGrameThread()
    {
       gThread = new Thread(this);
+      
       //calls run
       gThread.start();
    }
@@ -90,28 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
    //tick
    public void update ()
    {
-      if (keyH.shiftPressed)
-      {
-         speed=defaultSpeed*sprintScale;
-      }else{
-         speed=defaultSpeed; 
-      }
-      if (keyH.upPressed)
-      {
-         y-=speed;
-      }
-      else if (keyH.downPressed)
-      {
-         y+=speed;
-      }
-      else if (keyH.leftPressed)
-      {
-         x-=speed;
-      }
-      else if (keyH.rightPressed)
-      {
-         x+=speed;
-      }
+      player.update();
 
    }
 
@@ -123,8 +102,7 @@ public class GamePanel extends JPanel implements Runnable {
 
       Graphics2D g2 = (Graphics2D)g;
       //test
-      g2.setColor(Color.GREEN);
-      g2.fillRect((int)x, (int)y, TILE_SIZE, TILE_SIZE);
+      player.draw(g2);
 
       g2.dispose();//used to save on memory
 
