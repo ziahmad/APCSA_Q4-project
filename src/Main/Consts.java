@@ -1,4 +1,4 @@
-package Main;
+package src.Main;
 
 public final class Consts {
     public static final int TILE_SIZE_START = 8;

@@ -1,11 +1,11 @@
-package Main;
+package src.Main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
-import Entity.Player;
+import src.Entity.Player;
 
 public class GamePanel extends JPanel implements Runnable {
    //set defaul size for game window and tiles
