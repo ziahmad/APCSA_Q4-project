@@ -34,7 +34,9 @@ public class Player extends Entity{
 
     public void getPlayerImage ()
     {
+        //gets player sprites
         try {
+            //movement sprites
             up1 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/up1.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/up2.png"));
             down1 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/down1.png"));
@@ -51,6 +53,7 @@ public class Player extends Entity{
     }
     public void update()
     {
+        //if moving
         if(keyH.downPressed||keyH.rightPressed||keyH.leftPressed||keyH.upPressed)
         {
             if (keyH.shiftPressed)
