@@ -27,7 +27,7 @@ public class TileManager {
         tile = new Tile[10];
         mapTileNum = new int[Consts.MAX_SCREEN_ROW][Consts.MAX_SCREEN_COL];
         getTileImage();
-        loaMap();
+        loaMap("map1.png");
     }
 
     private int colorToNum(Color c)
@@ -37,11 +37,11 @@ public class TileManager {
         else
         return 0;
     }
-    public void loaMap()
+    public void loaMap(String mapFileName)
     {
         try {
             //File input = new File(getClass().getResource("/resources/Maps/map1.png"));
-            BufferedImage bi = ImageIO.read(getClass().getResource("/resources/Maps/map1.png"));
+            BufferedImage bi = ImageIO.read(getClass().getResource("/resources/Maps/"+mapFileName));
         
             for (int row = 0; row < Consts.MAX_SCREEN_ROW; row++) {
                 for (int col = 0; col < Consts.MAX_SCREEN_ROW; col++) {
