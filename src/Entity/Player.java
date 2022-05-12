@@ -15,6 +15,11 @@ public class Player extends Entity{
     KeyHandler keyH;
     public double sprintScale = 2;
     public double defaultSpeed = 1*Consts.SCALE;
+    public int maxStamina = 300;
+    public boolean sCharge = true;
+    public double stamina=maxStamina;
+
+    public boolean isMoving;
 
     public Player (GamePanel gPanel, KeyHandler kHandler)
     {
@@ -35,6 +40,7 @@ public class Player extends Entity{
     public void getPlayerImage ()
     {
         //gets player sprites
+        //TODO implement actual sprites
         try {
             //movement sprites
             up1 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/up1.png"));
@@ -45,6 +51,7 @@ public class Player extends Entity{
             left2 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/left2.png"));
             right1 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/right1.png"));
             right2 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/right2.png"));
+            //attack sprites
         } catch (Exception e) 
         {
             e.printStackTrace();
@@ -53,14 +60,34 @@ public class Player extends Entity{
     }
     public void update()
     {
-        //if moving
-        if(keyH.downPressed||keyH.rightPressed||keyH.leftPressed||keyH.upPressed)
+        //TODO: add stamina meter
+        isMoving =keyH.downPressed||keyH.rightPressed||keyH.leftPressed||keyH.upPressed;
+        
+        if(!isMoving&&stamina<maxStamina)
         {
-            if (keyH.shiftPressed)
+            stamina+=0.75;
+        }if(stamina>=maxStamina)
+        {
+            stamina=maxStamina;
+            sCharge=true;
+        }
+        
+
+        if(isMoving)
+        {
+            if (keyH.shiftPressed&&sCharge)
             {
                 speed=defaultSpeed*sprintScale;
+                stamina--;
+                if (stamina<=0)
+                {
+                    sCharge=false;
+                    stamina=0;
+                }
+
             }else{
-                speed=defaultSpeed; 
+                speed=defaultSpeed;
+                
             }
             if (keyH.upPressed)
             {
@@ -82,6 +109,7 @@ public class Player extends Entity{
                 direction = "right";
               x+=speed;
             }
+            //change sprite for animation
             spriteCounter++;
             if(spriteCounter>12/(speed/defaultSpeed))
             {
@@ -99,8 +127,6 @@ public class Player extends Entity{
 
     public void draw(Graphics2D g2)
     {
-     //   g2.setColor(Color.GREEN);
-      //g2.fillRect((int)x, (int)y, Consts.TILE_SIZE, Consts.TILE_SIZE);
     
         BufferedImage image = null;
 
@@ -147,6 +173,7 @@ public class Player extends Entity{
                 }
                 break;
         }
+        
         g2.drawImage(image,(int)x,(int)y,Consts.TILE_SIZE,Consts.TILE_SIZE,null);
 
     }

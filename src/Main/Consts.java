@@ -1,5 +1,9 @@
 package src.Main;
-
+/**
+ * Constants for window size and pixel scale
+ * 
+ * 
+ */
 public final class Consts {
     public static final int TILE_SIZE_START = 16;
     public static final int SCALE = 2;
