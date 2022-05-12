@@ -63,15 +63,15 @@ public class Player extends Entity{
         //TODO: add stamina meter
         isMoving =keyH.downPressed||keyH.rightPressed||keyH.leftPressed||keyH.upPressed;
         
-        if(!isMoving&&stamina<maxStamina)
+        if(!sCharge&&stamina<maxStamina)
         {
             stamina+=0.75;
-        }if(stamina>=maxStamina)
+            
+        }else if(stamina>=maxStamina)
         {
             stamina=maxStamina;
             sCharge=true;
         }
-        
 
         if(isMoving)
         {
