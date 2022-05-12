@@ -1,4 +1,4 @@
-package Main;
+package src.Main;
 
 
 import java.awt.event.KeyEvent;
@@ -20,7 +20,8 @@ public class KeyHandler implements KeyListener{
       
       switch(code)
       {
-         case KeyEvent.VK_W:
+         //controls
+         case (KeyEvent.VK_W):
             upPressed=true;
             break;
          case KeyEvent.VK_S:
@@ -32,9 +33,29 @@ public class KeyHandler implements KeyListener{
          case KeyEvent.VK_A:
             leftPressed=true;
             break;
+            //increaes movement speed
          case KeyEvent.VK_SHIFT:
             shiftPressed=true;
             break;
+         //movewith arrow keys
+         case (KeyEvent.VK_UP):
+            upPressed=true;
+            break;
+         case KeyEvent.VK_DOWN:
+            downPressed=true;
+            break;
+         case KeyEvent.VK_RIGHT:
+            rightPressed=true;
+            break;
+         case KeyEvent.VK_LEFT:
+            leftPressed=true;
+            break;
+         /**
+          * to use later for other inputs
+          case KeyEvent.VK_SHIFT:
+             shiftPressed=true;
+             break;
+          */
       }
    }
 
@@ -61,6 +82,25 @@ public class KeyHandler implements KeyListener{
          case KeyEvent.VK_SHIFT:
             shiftPressed=false;
             break;
+         //movewith arrow keys
+         case (KeyEvent.VK_UP):
+            upPressed=false;
+            break;
+         case KeyEvent.VK_DOWN:
+            downPressed=false;
+            break;
+         case KeyEvent.VK_RIGHT:
+            rightPressed=false;
+            break;
+         case KeyEvent.VK_LEFT:
+            leftPressed=false;
+            break;
+         /**
+          * to use later for other inputs
+          case KeyEvent.VK_SHIFT:
+             shiftPressed=false;
+             break;
+          */
       }
       
    }
