@@ -4,7 +4,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
 import java.awt.Color;
-import java.io.File;
 import java.util.HashMap;
 
 import src.Main.GamePanel;
@@ -19,7 +18,7 @@ public class TileManager {
 
     public TileManager (GamePanel gp)
     {
-        colorMap.put(Color.BLACK, 2);
+        colorMap.put(Color.BLACK, 0);
         colorMap.put(Color.RED, 1);
         colorMap.put(new Color(100,100,100), 2);
 
@@ -33,15 +32,16 @@ public class TileManager {
 
     private int colorToNum(Color c)
     {
+        if(colorMap.get(c)!=null)
             return colorMap.get(c);
-       // else
-       // return 0;
+        else
+        return 0;
     }
     public void loaMap()
     {
         try {
-            File input = new File("/resources/Maps/map1.png");
-            BufferedImage bi = ImageIO.read(input);
+            //File input = new File(getClass().getResource("/resources/Maps/map1.png"));
+            BufferedImage bi = ImageIO.read(getClass().getResource("/resources/Maps/map1.png"));
         
             for (int row = 0; row < Consts.MAX_SCREEN_ROW; row++) {
                 for (int col = 0; col < Consts.MAX_SCREEN_ROW; col++) {

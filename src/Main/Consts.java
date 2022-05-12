@@ -2,7 +2,7 @@ package src.Main;
 
 public final class Consts {
     public static final int TILE_SIZE_START = 16;
-    public static final int SCALE = 3;
+    public static final int SCALE = 2;
  
     public static final int TILE_SIZE = SCALE*TILE_SIZE_START;
     public static final int MAX_SCREEN_COL =16;

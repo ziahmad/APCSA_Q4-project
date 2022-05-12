@@ -13,7 +13,7 @@ import src.Main.KeyHandler;
 public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
-    public double sprintScale = 1.5;
+    public double sprintScale = 2;
     public double defaultSpeed = 1*Consts.SCALE;
 
     public Player (GamePanel gPanel, KeyHandler kHandler)

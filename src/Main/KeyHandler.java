@@ -15,7 +15,7 @@ public class KeyHandler implements KeyListener{
 
    @Override
    public void keyPressed(KeyEvent e) {
-      // TODO Auto-generated method stub
+      
       int code = e.getKeyCode();
       
       switch(code)
@@ -61,7 +61,7 @@ public class KeyHandler implements KeyListener{
 
    @Override
    public void keyReleased(KeyEvent e) {
-      // TODO Auto-generated method stub
+      
 
       int code = e.getKeyCode();
       
