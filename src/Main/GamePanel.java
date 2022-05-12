@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import src.Entity.Player;
+import src.Tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
    //set defaul size for game window and tiles
@@ -22,6 +23,8 @@ public class GamePanel extends JPanel implements Runnable {
    //fps goal
    int fps=60;
 
+
+   TileManager tileM = new TileManager(this);
    KeyHandler keyH = new KeyHandler();
    //to make the game run over time
    Thread gThread;
@@ -101,7 +104,9 @@ public class GamePanel extends JPanel implements Runnable {
       super.paintComponent(g);
 
       Graphics2D g2 = (Graphics2D)g;
-      //test
+      
+      tileM.draw(g2);
+
       player.draw(g2);
 
       g2.dispose();//used to save on memory
