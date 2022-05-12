@@ -53,7 +53,7 @@ public class TileManager {
             }
             
         } catch (Exception e) {
-            //TODO: handle exception
+            
         }
 
     }
