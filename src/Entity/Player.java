@@ -7,8 +7,12 @@ import javax.imageio.ImageIO;
 import src.Main.Consts;
 import src.Main.GamePanel;
 import src.Main.KeyHandler;
-
-//import java.awt.Color;
+/**
+ * 
+ * notes or future, to get player to mmove in the screen
+ * then move camera after passing edge, consider sub coordinates
+ * 
+ */
 
 public class Player extends Entity{
     GamePanel gp;
@@ -18,6 +22,9 @@ public class Player extends Entity{
     public int maxStamina = 300;
     public boolean sCharge = true;
     public double stamina=maxStamina;
+
+    public int screenX;
+    public int screenY;
 
     public boolean isMoving;
 
@@ -31,8 +38,10 @@ public class Player extends Entity{
 
     public void setDefaultValues ()
     {
-        x= Consts.SCREEN_WIDTH/2;
-        y = Consts.SCREEN_HEIGHT/2;
+        worldX= Consts.WORLD_HEIGHT/2;
+        worldY = Consts.WORLD_WITDH/2;
+        screenX=Consts.SCREEN_HEIGHT/2;
+        screenY=Consts.SCREEN_WIDTH/2;
         speed =2*defaultSpeed;
         direction = "down";
     }
@@ -40,7 +49,7 @@ public class Player extends Entity{
     public void getPlayerImage ()
     {
         //gets player sprites
-        //TODO implement actual sprites
+        //TODO: implement actual sprites
         try {
             //movement sprites
             up1 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/up1.png"));
@@ -92,22 +101,22 @@ public class Player extends Entity{
             if (keyH.upPressed)
             {
               direction ="up";
-              y-=speed;
+              screenY-=speed;
             }
             else if (keyH.downPressed)
             {
               direction ="down";
-              y+=speed;
+              screenY+=speed;
             }
             else if (keyH.leftPressed)
             {
               direction ="left";
-              x-=speed;
+              screenX-=speed;
             }
             else if (keyH.rightPressed)
             {
                 direction = "right";
-              x+=speed;
+                screenX+=speed;
             }
             //change sprite for animation
             spriteCounter++;
@@ -129,7 +138,7 @@ public class Player extends Entity{
     {
     
         BufferedImage image = null;
-
+//TODO: add if passing edge of screen, change world by screen size
         switch(direction)
         {
             case "up":
@@ -174,7 +183,7 @@ public class Player extends Entity{
                 break;
         }
         
-        g2.drawImage(image,(int)x,(int)y,Consts.TILE_SIZE,Consts.TILE_SIZE,null);
+        g2.drawImage(image,(int)screenX,(int)screenY,Consts.TILE_SIZE,Consts.TILE_SIZE,null);
 
     }
 }
