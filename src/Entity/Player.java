@@ -23,8 +23,8 @@ public class Player extends Entity{
     public boolean sCharge = true;
     public double stamina=maxStamina;
 
-    public int screenX;
-    public int screenY;
+    public double screenX;
+    public double screenY;
 
     public boolean isMoving;
 
@@ -38,10 +38,10 @@ public class Player extends Entity{
 
     public void setDefaultValues ()
     {
-        worldX= Consts.WORLD_HEIGHT/2;
-        worldY = Consts.WORLD_WITDH/2;
-        screenX=Consts.SCREEN_HEIGHT/2;
-        screenY=Consts.SCREEN_WIDTH/2;
+        worldX= Consts.WORLD_SCREENS_WIDTH/2;
+        worldY = Consts.WORLD_SCREENS_HEIGHT/2;
+        screenX=Consts.SCREEN_WIDTH/2-(Consts.TILE_SIZE/2);
+        screenY=Consts.SCREEN_HEIGHT/2-(Consts.TILE_SIZE/2);
         speed =2*defaultSpeed;
         direction = "down";
     }
@@ -72,7 +72,7 @@ public class Player extends Entity{
         //TODO: add stamina meter
         isMoving =keyH.downPressed||keyH.rightPressed||keyH.leftPressed||keyH.upPressed;
         
-        if(!sCharge&&stamina<maxStamina)
+        if((!sCharge||!isMoving)&&stamina<maxStamina)
         {
             stamina+=0.75;
             
@@ -94,29 +94,53 @@ public class Player extends Entity{
                     stamina=0;
                 }
 
+            }else if (!sCharge){
+                speed=defaultSpeed*.7;
+
+
             }else{
                 speed=defaultSpeed;
                 
             }
             if (keyH.upPressed)
             {
-              direction ="up";
-              screenY-=speed;
+                direction ="up";
+                screenY-=speed;
+                if(screenY<=0&&worldY>0)
+                {
+                    screenY=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
+                    worldY--;
+                }
             }
             else if (keyH.downPressed)
             {
               direction ="down";
               screenY+=speed;
+              if(screenY>=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE&&worldY<Consts.WORLD_SCREENS_HEIGHT)
+              {
+                  screenY=(0)*Consts.TILE_SIZE;
+                  worldY++;
+              }
             }
             else if (keyH.leftPressed)
             {
               direction ="left";
               screenX-=speed;
+              if(screenX<=0&&worldX>0)
+                {
+                    screenX=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
+                    worldX--;
+                }
             }
             else if (keyH.rightPressed)
             {
                 direction = "right";
                 screenX+=speed;
+                if(screenX>=(Consts.MAX_SCREEN_COL-1)*Consts.TILE_SIZE&&worldX<Consts.WORLD_SCREENS_WIDTH)
+              {
+                  screenX=(0)*Consts.TILE_SIZE;
+                  worldX++;
+              }
             }
             //change sprite for animation
             spriteCounter++;
