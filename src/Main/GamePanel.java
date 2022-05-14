@@ -10,8 +10,6 @@ import src.Tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
    //set defaul size for game window and tiles
-   public final int TILE_SIZE_START = Consts.TILE_SIZE_START;
-   public final int SCALE = Consts.SCALE;
 
    public final int TILE_SIZE = Consts.SCALE*Consts.TILE_SIZE_START;
    public final int MAX_SCREEN_COL =Consts.MAX_SCREEN_COL;
@@ -28,7 +26,8 @@ public class GamePanel extends JPanel implements Runnable {
    KeyHandler keyH = new KeyHandler();
    //to make the game run over time
    Thread gThread;
-   Player player = new Player(this, keyH);
+   public CollisionChecker cChecker = new CollisionChecker(this);
+   public Player player = new Player(this, keyH);
       
 
    
@@ -79,12 +78,14 @@ public class GamePanel extends JPanel implements Runnable {
             repaint();
             dt--;
             drawcount++;
+            
          }
          if (timer>=1000000000)
          {
             System.out.println("FPS: "+drawcount);
             drawcount=0;
             timer=0;
+            System.out.println("Stamina:"+player.stamina+" "+player.sCharge);
          }
       }
       
@@ -104,7 +105,7 @@ public class GamePanel extends JPanel implements Runnable {
       super.paintComponent(g);
 
       Graphics2D g2 = (Graphics2D)g;
-      
+      //draw tiles then player
       tileM.draw(g2);
 
       player.draw(g2);
