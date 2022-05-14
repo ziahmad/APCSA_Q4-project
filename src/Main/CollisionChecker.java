@@ -1,6 +1,7 @@
 package src.Main;
 
 import src.Entity.Entity;
+import src.Entity.Player;
 
 public class CollisionChecker {
    
@@ -38,6 +39,12 @@ public class CollisionChecker {
             {
                entity.collisionOn=true;
             }
+            if (entity instanceof Player&&gp.tileM.tile[tileNum1].mudColision==true&&gp.tileM.tile[tileNum2].mudColision==true)
+            {
+               ((Player)entity).speedModifier=.6;
+            }else{
+               ((Player)entity).speedModifier=1;
+            }
             break;
          case "down":
             entityBotRow = (int)((entityBotAbsY+entity.speed))/Consts.TILE_SIZE;
@@ -46,6 +53,12 @@ public class CollisionChecker {
             if(gp.tileM.tile[tileNum1].collision==true||gp.tileM.tile[tileNum2].collision==true)
             {
                entity.collisionOn=true;
+            }
+            if (entity instanceof Player&&gp.tileM.tile[tileNum1].mudColision==true&&gp.tileM.tile[tileNum2].mudColision==true)
+            {
+               ((Player)entity).speedModifier=.6;
+            }else{
+               ((Player)entity).speedModifier=1;
             }
             break;
          case "left":
@@ -56,6 +69,12 @@ public class CollisionChecker {
             {
                entity.collisionOn=true;
             }
+            if (entity instanceof Player&&gp.tileM.tile[tileNum1].mudColision==true&&gp.tileM.tile[tileNum2].mudColision==true)
+            {
+               ((Player)entity).speedModifier=.6;
+            }else{
+               ((Player)entity).speedModifier=1;
+            }
             break;
          case "right":
             entityRightCol = (int)((entityRightAbsX+entity.speed))/Consts.TILE_SIZE;
@@ -64,6 +83,12 @@ public class CollisionChecker {
             if(gp.tileM.tile[tileNum1].collision==true||gp.tileM.tile[tileNum2].collision==true)
             {
                entity.collisionOn=true;
+            }
+            if (entity instanceof Player&&gp.tileM.tile[tileNum1].mudColision==true&&gp.tileM.tile[tileNum2].mudColision==true)
+            {
+               ((Player)entity).speedModifier=.6;
+            }else{
+               ((Player)entity).speedModifier=1;
             }
             break;
 

@@ -81,7 +81,7 @@ public class TileManager {
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(getClass().getResource("/resources/sprites/Tiles/mud.png"));
             colorMap.put(new Color(66,44,8), 4);
-            tile[4].collision=true;
+            tile[4].mudColision=true;
             //sand
             tile[5] = new Tile();
             tile[5].image = ImageIO.read(getClass().getResource("/resources/sprites/Tiles/sand.png"));
