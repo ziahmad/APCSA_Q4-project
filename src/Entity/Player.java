@@ -19,7 +19,7 @@ public class Player extends Entity{
     KeyHandler keyH;
     public double sprintScale = 2;
     public double defaultSpeed = 1*Consts.SCALE;
-    public int maxStamina = 300;
+    public int maxStamina = 600;
     public boolean sCharge = true;
     public double stamina=maxStamina;
 
@@ -72,9 +72,9 @@ public class Player extends Entity{
         //TODO: add stamina meter
         isMoving =keyH.downPressed||keyH.rightPressed||keyH.leftPressed||keyH.upPressed;
         
-        if((!sCharge||!isMoving)&&stamina<maxStamina)
+        if(stamina<maxStamina)
         {
-            stamina+=0.75;
+            stamina+=1;
             
         }else if(stamina>=maxStamina)
         {
@@ -87,7 +87,7 @@ public class Player extends Entity{
             if (keyH.shiftPressed&&sCharge)
             {
                 speed=defaultSpeed*sprintScale;
-                stamina--;
+                stamina-=3;
                 if (stamina<=0)
                 {
                     sCharge=false;
@@ -95,7 +95,7 @@ public class Player extends Entity{
                 }
 
             }else if (!sCharge){
-                speed=defaultSpeed*.7;
+                speed=defaultSpeed*.6;
 
 
             }else{
@@ -116,7 +116,7 @@ public class Player extends Entity{
             {
               direction ="down";
               screenY+=speed;
-              if(screenY>=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE&&worldY<Consts.WORLD_SCREENS_HEIGHT-1)
+              if(screenY>=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE&&worldY<Consts.WORLD_SCREENS_HEIGHT)
               {
                   screenY=(0)*Consts.TILE_SIZE;
                   worldY++;
@@ -136,7 +136,7 @@ public class Player extends Entity{
             {
                 direction = "right";
                 screenX+=speed;
-                if(screenX>=(Consts.MAX_SCREEN_COL-1)*Consts.TILE_SIZE&&worldX<Consts.WORLD_SCREENS_WIDTH-1)
+                if(screenX>=(Consts.MAX_SCREEN_COL-1)*Consts.TILE_SIZE&&worldX<Consts.WORLD_SCREENS_WIDTH)
               {
                   screenX=(0)*Consts.TILE_SIZE;
                   worldX++;
