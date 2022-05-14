@@ -1,6 +1,7 @@
 package src.Entity;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
@@ -19,12 +20,12 @@ public class Player extends Entity{
     KeyHandler keyH;
     public double sprintScale = 2;
     public double defaultSpeed = 1*Consts.SCALE;
+    public double speedModifier =1;
     public int maxStamina = 600;
     public boolean sCharge = true;
     public double stamina=maxStamina;
 
-    public double screenX;
-    public double screenY;
+    
 
     public boolean isMoving;
 
@@ -32,6 +33,9 @@ public class Player extends Entity{
     {
         gp=gPanel;
         keyH=kHandler;
+
+        solidArea= new Rectangle(4*Consts.SCALE,6*Consts.SCALE,8*Consts.SCALE,10*Consts.SCALE);
+
         setDefaultValues();
         getPlayerImage();
     }
@@ -43,6 +47,9 @@ public class Player extends Entity{
         screenX=Consts.SCREEN_WIDTH/2-(Consts.TILE_SIZE/2);
         screenY=Consts.SCREEN_HEIGHT/2-(Consts.TILE_SIZE/2);
         speed =2*defaultSpeed;
+
+        absX = screenX+(worldX*Consts.SCREEN_WIDTH);
+        absY = screenY+(worldY*Consts.SCREEN_HEIGHT);
         direction = "down";
     }
 
@@ -86,7 +93,7 @@ public class Player extends Entity{
         {
             if (keyH.shiftPressed&&sCharge)
             {
-                speed=defaultSpeed*sprintScale;
+                speed=defaultSpeed*sprintScale*speedModifier;
                 stamina-=3;
                 if (stamina<=0)
                 {
@@ -95,53 +102,77 @@ public class Player extends Entity{
                 }
 
             }else if (!sCharge){
-                speed=defaultSpeed*.6;
+                speed=defaultSpeed*.6*speedModifier;
 
 
             }else{
-                speed=defaultSpeed;
+                speed=defaultSpeed*speedModifier;
                 
             }
             if (keyH.upPressed)
             {
                 direction ="up";
-                screenY-=speed;
-                if(screenY<=0&&worldY>0)
-                {
-                    screenY=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
-                    worldY--;
-                }
+                
             }
             else if (keyH.downPressed)
             {
               direction ="down";
-              screenY+=speed;
-              if(screenY>=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE&&worldY<Consts.WORLD_SCREENS_HEIGHT)
-              {
-                  screenY=(0)*Consts.TILE_SIZE;
-                  worldY++;
-              }
+              
             }
             else if (keyH.leftPressed)
             {
-              direction ="left";
-              screenX-=speed;
-              if(screenX<=0&&worldX>0)
-                {
-                    screenX=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
-                    worldX--;
-                }
+                direction ="left";
+              
             }
             else if (keyH.rightPressed)
             {
                 direction = "right";
-                screenX+=speed;
-                if(screenX>=(Consts.MAX_SCREEN_COL-1)*Consts.TILE_SIZE&&worldX<Consts.WORLD_SCREENS_WIDTH)
-              {
-                  screenX=(0)*Consts.TILE_SIZE;
-                  worldX++;
-              }
+                
             }
+            absX = screenX+(worldX*Consts.SCREEN_WIDTH);
+            absY = screenY+(worldY*Consts.SCREEN_HEIGHT);
+            //collision
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+                //if collides
+            if(collisionOn==false)
+            {
+                switch(direction){
+                    case "up":
+                        screenY-=speed;
+                        if(screenY<=0&&worldY>0)
+                        {
+                            screenY=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
+                            worldY--;
+                        }
+                        break;
+                    case "down":
+                        screenY+=speed;
+                        if(screenY>=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE&&worldY<Consts.WORLD_SCREENS_HEIGHT)
+                        {
+                            screenY=(0)*Consts.TILE_SIZE;
+                            worldY++;
+                        }
+                        break;
+                    case "left":
+                        screenX-=speed;
+                        if(screenX<=0&&worldX>0)
+                        {
+                            screenX=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
+                            worldX--;
+                        }
+                        break;
+                    case "right":
+                        screenX+=speed;
+                        if(screenX>=(Consts.MAX_SCREEN_COL-1)*Consts.TILE_SIZE&&worldX<Consts.WORLD_SCREENS_WIDTH)
+                        {
+                            screenX=(0)*Consts.TILE_SIZE;
+                            worldX++;
+                        }
+                        break;
+                }
+            }
+
             //change sprite for animation
             spriteCounter++;
             if(spriteCounter>12/(speed/defaultSpeed))

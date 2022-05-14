@@ -12,8 +12,8 @@ import src.Main.Consts;
 
 public class TileManager {
     GamePanel gp;
-    Tile[] tile;
-    int mapTileNum[][];
+    public Tile[] tile;
+    public int mapTileNum[][];
     static private HashMap<Color, Integer> colorMap = new HashMap<>(3);
         
 
@@ -68,6 +68,7 @@ public class TileManager {
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(getClass().getResource("/resources/sprites/Tiles/wall.png"));
             colorMap.put(Color.RED, 1);
+            tile[1].collision=true;
             //floor
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(getClass().getResource("/resources/sprites/Tiles/floor.png"));
@@ -80,6 +81,7 @@ public class TileManager {
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(getClass().getResource("/resources/sprites/Tiles/mud.png"));
             colorMap.put(new Color(66,44,8), 4);
+            tile[4].mudColision=true;
             //sand
             tile[5] = new Tile();
             tile[5].image = ImageIO.read(getClass().getResource("/resources/sprites/Tiles/sand.png"));
@@ -88,7 +90,9 @@ public class TileManager {
             tile[6] = new Tile();
             tile[6].image = ImageIO.read(getClass().getResource("/resources/sprites/Tiles/water.png"));
             colorMap.put(new Color(0,0,255), 6);
-       
+            tile[6].collision=true;
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
