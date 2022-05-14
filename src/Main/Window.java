@@ -1,12 +1,5 @@
 package src.Main;
 import javax.swing.JFrame;
-/**
- * makes window that holds game
- * 
- * 
- * 
- */
-
 
 public class Window extends JFrame{
    

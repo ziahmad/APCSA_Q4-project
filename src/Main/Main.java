@@ -1,9 +1,8 @@
 package src.Main;
-/**
-*Followed the tutorial at
+/* 
+*Followed the tutorial
 *https://www.youtube.com/watch?v=om59cwR7psI&list=PL_QPQmz5C6WUF-pOQDsbsKbaBZqXj4qSq&index=1
-* to get learn what i could do to get things on the screen
-*
+* to get a feel for the process of making the game
 *
 */
 public class Main {

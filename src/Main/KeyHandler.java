@@ -3,12 +3,7 @@ package src.Main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-/**
- * 
- * controlls
- * 
- * 
- */
+
 public class KeyHandler implements KeyListener{
 
    public boolean upPressed, downPressed,leftPressed,rightPressed,shiftPressed;
