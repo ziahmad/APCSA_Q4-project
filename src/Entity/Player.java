@@ -116,7 +116,7 @@ public class Player extends Entity{
             {
               direction ="down";
               screenY+=speed;
-              if(screenY>=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE&&worldY<Consts.WORLD_SCREENS_HEIGHT)
+              if(screenY>=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE&&worldY<Consts.WORLD_SCREENS_HEIGHT-1)
               {
                   screenY=(0)*Consts.TILE_SIZE;
                   worldY++;
@@ -136,7 +136,7 @@ public class Player extends Entity{
             {
                 direction = "right";
                 screenX+=speed;
-                if(screenX>=(Consts.MAX_SCREEN_COL-1)*Consts.TILE_SIZE&&worldX<Consts.WORLD_SCREENS_WIDTH)
+                if(screenX>=(Consts.MAX_SCREEN_COL-1)*Consts.TILE_SIZE&&worldX<Consts.WORLD_SCREENS_WIDTH-1)
               {
                   screenX=(0)*Consts.TILE_SIZE;
                   worldX++;
