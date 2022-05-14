@@ -1,23 +1,31 @@
 package src.Entity;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 import src.Main.Consts;
 import src.Main.GamePanel;
 import src.Main.KeyHandler;
-
-//import java.awt.Color;
+/**
+ * 
+ * notes or future, to get player to mmove in the screen
+ * then move camera after passing edge, consider sub coordinates
+ * 
+ */
 
 public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
     public double sprintScale = 2;
     public double defaultSpeed = 1*Consts.SCALE;
-    public int maxStamina = 300;
+    public double speedModifier =1;
+    public int maxStamina = 600;
     public boolean sCharge = true;
     public double stamina=maxStamina;
+
+    
 
     public boolean isMoving;
 
@@ -25,22 +33,30 @@ public class Player extends Entity{
     {
         gp=gPanel;
         keyH=kHandler;
+
+        solidArea= new Rectangle(4*Consts.SCALE,6*Consts.SCALE,8*Consts.SCALE,10*Consts.SCALE);
+
         setDefaultValues();
         getPlayerImage();
     }
 
     public void setDefaultValues ()
     {
-        x= Consts.SCREEN_WIDTH/2;
-        y = Consts.SCREEN_HEIGHT/2;
+        worldX= Consts.WORLD_SCREENS_WIDTH/2;
+        worldY = Consts.WORLD_SCREENS_HEIGHT/2;
+        screenX=Consts.SCREEN_WIDTH/2-(Consts.TILE_SIZE/2);
+        screenY=Consts.SCREEN_HEIGHT/2-(Consts.TILE_SIZE/2);
         speed =2*defaultSpeed;
+
+        absX = screenX+(worldX*Consts.SCREEN_WIDTH);
+        absY = screenY+(worldY*Consts.SCREEN_HEIGHT);
         direction = "down";
     }
 
     public void getPlayerImage ()
     {
         //gets player sprites
-        //TODO implement actual sprites
+        //TODO: implement actual sprites
         try {
             //movement sprites
             up1 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/up1.png"));
@@ -63,9 +79,9 @@ public class Player extends Entity{
         //TODO: add stamina meter
         isMoving =keyH.downPressed||keyH.rightPressed||keyH.leftPressed||keyH.upPressed;
         
-        if(!sCharge&&stamina<maxStamina)
+        if(stamina<maxStamina)
         {
-            stamina+=0.75;
+            stamina+=1;
             
         }else if(stamina>=maxStamina)
         {
@@ -77,38 +93,86 @@ public class Player extends Entity{
         {
             if (keyH.shiftPressed&&sCharge)
             {
-                speed=defaultSpeed*sprintScale;
-                stamina--;
+                speed=defaultSpeed*sprintScale*speedModifier;
+                stamina-=3;
                 if (stamina<=0)
                 {
                     sCharge=false;
                     stamina=0;
                 }
 
+            }else if (!sCharge){
+                speed=defaultSpeed*.6*speedModifier;
+
+
             }else{
-                speed=defaultSpeed;
+                speed=defaultSpeed*speedModifier;
                 
             }
             if (keyH.upPressed)
             {
-              direction ="up";
-              y-=speed;
+                direction ="up";
+                
             }
             else if (keyH.downPressed)
             {
               direction ="down";
-              y+=speed;
+              
             }
             else if (keyH.leftPressed)
             {
-              direction ="left";
-              x-=speed;
+                direction ="left";
+              
             }
             else if (keyH.rightPressed)
             {
                 direction = "right";
-              x+=speed;
+                
             }
+            absX = screenX+(worldX*Consts.SCREEN_WIDTH);
+            absY = screenY+(worldY*Consts.SCREEN_HEIGHT);
+            //collision
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+                //if collides
+            if(collisionOn==false)
+            {
+                switch(direction){
+                    case "up":
+                        screenY-=speed;
+                        if(screenY<=0&&worldY>0)
+                        {
+                            screenY=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
+                            worldY--;
+                        }
+                        break;
+                    case "down":
+                        screenY+=speed;
+                        if(screenY>=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE&&worldY<Consts.WORLD_SCREENS_HEIGHT)
+                        {
+                            screenY=(0)*Consts.TILE_SIZE;
+                            worldY++;
+                        }
+                        break;
+                    case "left":
+                        screenX-=speed;
+                        if(screenX<=0&&worldX>0)
+                        {
+                            screenX=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
+                            worldX--;
+                        }
+                        break;
+                    case "right":
+                        screenX+=speed;
+                        if(screenX>=(Consts.MAX_SCREEN_COL-1)*Consts.TILE_SIZE&&worldX<Consts.WORLD_SCREENS_WIDTH)
+                        {
+                            screenX=(0)*Consts.TILE_SIZE;
+                            worldX++;
+                        }
+                        break;
+                }
+            }
+
             //change sprite for animation
             spriteCounter++;
             if(spriteCounter>12/(speed/defaultSpeed))
@@ -129,7 +193,7 @@ public class Player extends Entity{
     {
     
         BufferedImage image = null;
-
+//TODO: add if passing edge of screen, change world by screen size
         switch(direction)
         {
             case "up":
@@ -174,7 +238,7 @@ public class Player extends Entity{
                 break;
         }
         
-        g2.drawImage(image,(int)x,(int)y,Consts.TILE_SIZE,Consts.TILE_SIZE,null);
+        g2.drawImage(image,(int)screenX,(int)screenY,Consts.TILE_SIZE,Consts.TILE_SIZE,null);
 
     }
 }
