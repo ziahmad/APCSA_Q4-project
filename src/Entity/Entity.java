@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.awt.Rectangle;
 //super class or all entities
 public class Entity {
-    public static int worldX, worldY;
+    public int worldX, worldY;
 
     public double absX,absY;
     public double screenX;

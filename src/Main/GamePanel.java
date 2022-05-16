@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 import src.Entity.Player;
@@ -30,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
    public CollisionChecker cChecker = new CollisionChecker(this);
    public assestSetter aSetter = new assestSetter(this);
    public Player player = new Player(this, keyH);
-   public SuperObject obj[] = new SuperObject[30];
+   public ArrayList<SuperObject> obj=new ArrayList<>(0);
       
 
    
@@ -102,6 +104,7 @@ public class GamePanel extends JPanel implements Runnable {
    public void update ()
    {
       player.update();
+      
 
    }
 
@@ -115,12 +118,11 @@ public class GamePanel extends JPanel implements Runnable {
       //draw tiles 
       tileM.draw(g2);
       //objects
-      for (int i = 0; i < obj.length; i++) {
-         if(obj[i]!=null)
-         {
-            obj[i].draw(g2, this);
-         }
+      for (SuperObject superObject : obj) {
+         if(superObject.worldX==player.worldX&&superObject.worldY==player.worldY)
+         superObject.draw(g2, this);
       }
+      
 
       //then player
       player.draw(g2);

@@ -106,7 +106,7 @@ public class TileManager {
         
         for (int col = 0; col < Consts.MAX_SCREEN_COL; col++) {
             for (int row = 0; row < Consts.MAX_SCREEN_ROW; row++) {
-                int tileNum = mapTileNum[col+(Player.worldY*Consts.MAX_SCREEN_COL)][row+(Player.worldX*Consts.MAX_SCREEN_ROW)];
+                int tileNum = mapTileNum[col+(gp.player.worldY*Consts.MAX_SCREEN_COL)][row+(gp.player.worldX*Consts.MAX_SCREEN_ROW)];
                 g2.drawImage(tile[tileNum].image,row*Consts.TILE_SIZE,col*Consts.TILE_SIZE,Consts.TILE_SIZE,Consts.TILE_SIZE,null);
             }
         }
