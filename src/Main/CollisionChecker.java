@@ -2,6 +2,7 @@ package src.Main;
 
 import src.Entity.Entity;
 import src.Entity.Player;
+import src.Objects.SuperObject;
 
 public class CollisionChecker {
    
@@ -87,6 +88,14 @@ public class CollisionChecker {
 
       }
    
+   }
+   public int checkObject(Entity entity, boolean player )
+   {
+      int i=0;
+
+
+
+      return i;
    }
 
 

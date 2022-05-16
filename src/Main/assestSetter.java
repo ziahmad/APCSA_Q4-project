@@ -1,5 +1,7 @@
 package src.Main;
 
+import src.Objects.OBJ_Chest;
+import src.Objects.OBJ_Door;
 import src.Objects.OBJ_Key;
 
 public class assestSetter {
@@ -13,11 +15,13 @@ public class assestSetter {
 
    public void setObject()
    {
+      //keys
       gp.obj.add(new OBJ_Key(9,3));
-
-
       gp.obj.add(new OBJ_Key(5,13));
-
+      //doors
+      gp.obj.add(new OBJ_Door(5,3));
+      //chests
+      gp.obj.add(new OBJ_Chest(3,3));
 
    }
 

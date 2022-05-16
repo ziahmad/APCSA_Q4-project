@@ -2,6 +2,7 @@ package src.Objects;
 
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
 import src.Main.Consts;
 import src.Main.GamePanel;
@@ -14,6 +15,8 @@ public class SuperObject {
    public int absX, absY;
    public int worldX, worldY;
    public int screenX, screenY;
+
+   public Rectangle solidArea = new Rectangle(0,0,Consts.TILE_SIZE,Consts.TILE_SIZE);
 
    public SuperObject(int x, int y)
    {
