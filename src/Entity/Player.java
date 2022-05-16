@@ -61,12 +61,16 @@ public class Player extends Entity{
             //movement sprites
             up1 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/up1.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/up2.png"));
+            up0 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/up0.png"));
             down1 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/down1.png"));
             down2 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/down2.png"));
+            down0 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/down0.png"));
             left1 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/left1.png"));
             left2 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/left2.png"));
+            left0 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/left0.png"));
             right1 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/right1.png"));
             right2 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/right2.png"));
+            right0 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/right0.png"));
             //attack sprites
         } catch (Exception e) 
         {
@@ -177,13 +181,16 @@ public class Player extends Entity{
             spriteCounter++;
             if(spriteCounter>12/(speed/defaultSpeed))
             {
+                spriteNum++;
+                spriteNum%=2;
+                /*
                 if(spriteNum==1)
                 {
                     spriteNum=2;
                 }else if(spriteNum==2)
                 {
                     spriteNum=1;
-                }
+                }*/
                 spriteCounter=0;
             }
         }
@@ -197,43 +204,59 @@ public class Player extends Entity{
         switch(direction)
         {
             case "up":
-                if(spriteNum==1)
+                if(spriteNum==0)
                 {
                 image=up1;
                 }
-                if(spriteNum==2)
+                if(spriteNum==1)
                 {
                 image=up2;
                 }
+                if(!isMoving)
+                {
+                    image = up0;
+                }
                 break;
             case "down":
-                if(spriteNum==1)
+                if(spriteNum==0)
                 {
                 image=down1;
                 }
-                if(spriteNum==2)
+                if(spriteNum==1)
                 {
                 image=down2;
                 }
+                if(!isMoving)
+                {
+                    image = down0;
+                }
                 break;
             case "left":
-                if(spriteNum==1)
+                if(spriteNum==0)
                 {
                 image=left1;
                 }
-                if(spriteNum==2)
+                if(spriteNum==1)
                 {
                 image=left2;
                 }
+                if(!isMoving)
+                {
+                    image = left0;
+                }
                 break;
             case "right":
-                if(spriteNum==1)
+                if(spriteNum==0)
                 {
                 image=right1;
                 }
-                if(spriteNum==2)
+                if(spriteNum==1)
                 {
                 image=right2;
+                }
+                if(!isMoving)
+                {
+                    image = right0;
                 }
                 break;
         }

@@ -39,9 +39,9 @@ public class CollisionChecker {
             {
                entity.collisionOn=true;
             }
-            if (entity instanceof Player&&gp.tileM.tile[tileNum1].mudColision==true&&gp.tileM.tile[tileNum2].mudColision==true)
+            if (entity instanceof Player&&gp.tileM.tile[tileNum1].speedTile==true||gp.tileM.tile[tileNum2].speedTile==true)
             {
-               ((Player)entity).speedModifier=.6;
+               ((Player)entity).speedModifier=gp.tileM.tile[tileNum1].speedModifier;
             }else{
                ((Player)entity).speedModifier=1;
             }
@@ -54,9 +54,9 @@ public class CollisionChecker {
             {
                entity.collisionOn=true;
             }
-            if (entity instanceof Player&&gp.tileM.tile[tileNum1].mudColision==true&&gp.tileM.tile[tileNum2].mudColision==true)
+            if (entity instanceof Player&&gp.tileM.tile[tileNum1].speedTile==true||gp.tileM.tile[tileNum2].speedTile==true)
             {
-               ((Player)entity).speedModifier=.6;
+               ((Player)entity).speedModifier=gp.tileM.tile[tileNum1].speedModifier;
             }else{
                ((Player)entity).speedModifier=1;
             }
@@ -69,9 +69,9 @@ public class CollisionChecker {
             {
                entity.collisionOn=true;
             }
-            if (entity instanceof Player&&gp.tileM.tile[tileNum1].mudColision==true&&gp.tileM.tile[tileNum2].mudColision==true)
+            if (entity instanceof Player&&gp.tileM.tile[tileNum1].speedTile==true||gp.tileM.tile[tileNum2].speedTile==true)
             {
-               ((Player)entity).speedModifier=.6;
+               ((Player)entity).speedModifier=gp.tileM.tile[tileNum1].speedModifier;
             }else{
                ((Player)entity).speedModifier=1;
             }
@@ -84,9 +84,9 @@ public class CollisionChecker {
             {
                entity.collisionOn=true;
             }
-            if (entity instanceof Player&&gp.tileM.tile[tileNum1].mudColision==true&&gp.tileM.tile[tileNum2].mudColision==true)
+            if (entity instanceof Player&&gp.tileM.tile[tileNum1].speedTile==true||gp.tileM.tile[tileNum2].speedTile==true)
             {
-               ((Player)entity).speedModifier=.6;
+               ((Player)entity).speedModifier=gp.tileM.tile[tileNum1].speedModifier;
             }else{
                ((Player)entity).speedModifier=1;
             }

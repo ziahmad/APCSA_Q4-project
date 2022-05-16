@@ -73,6 +73,8 @@ public class TileManager {
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(getClass().getResource("/resources/sprites/Tiles/floor.png"));
             colorMap.put(new Color(100,100,100), 2);
+            tile[2].speedTile=true;
+            tile[2].speedModifier=1.4;
             //grass
             tile[3] = new Tile();
             tile[3].image = ImageIO.read(getClass().getResource("/resources/sprites/Tiles/grass.png"));
@@ -81,7 +83,8 @@ public class TileManager {
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(getClass().getResource("/resources/sprites/Tiles/mud.png"));
             colorMap.put(new Color(66,44,8), 4);
-            tile[4].mudColision=true;
+            tile[4].speedTile=true;
+            tile[4].speedModifier=.6;
             //sand
             tile[5] = new Tile();
             tile[5].image = ImageIO.read(getClass().getResource("/resources/sprites/Tiles/sand.png"));
