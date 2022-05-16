@@ -39,26 +39,22 @@ public class CollisionChecker {
             {
                entity.collisionOn=true;
             }
-            if (entity instanceof Player&&gp.tileM.tile[tileNum1].speedTile==true||gp.tileM.tile[tileNum2].speedTile==true)
+            if (entity instanceof Player &&(gp.tileM.tile[tileNum1].speedTile==true&&gp.tileM.tile[tileNum2].speedTile==true))
             {
                ((Player)entity).speedModifier=gp.tileM.tile[tileNum1].speedModifier;
-            }else{
-               ((Player)entity).speedModifier=1;
             }
             break;
          case "down":
-            entityBotRow = (int)((entityBotAbsY+entity.speed))/Consts.TILE_SIZE;
+            entityBotRow = ((int)((entityBotAbsY+entity.speed+1)))/Consts.TILE_SIZE;
             tileNum1=gp.tileM.mapTileNum[entityBotRow][entityLeftCol];
             tileNum2=gp.tileM.mapTileNum[entityBotRow][entityRightCol];
             if(gp.tileM.tile[tileNum1].collision==true||gp.tileM.tile[tileNum2].collision==true)
             {
                entity.collisionOn=true;
             }
-            if (entity instanceof Player&&gp.tileM.tile[tileNum1].speedTile==true||gp.tileM.tile[tileNum2].speedTile==true)
+            if (entity instanceof Player &&(gp.tileM.tile[tileNum1].speedTile==true&&gp.tileM.tile[tileNum2].speedTile==true))
             {
                ((Player)entity).speedModifier=gp.tileM.tile[tileNum1].speedModifier;
-            }else{
-               ((Player)entity).speedModifier=1;
             }
             break;
          case "left":
@@ -69,26 +65,22 @@ public class CollisionChecker {
             {
                entity.collisionOn=true;
             }
-            if (entity instanceof Player&&gp.tileM.tile[tileNum1].speedTile==true||gp.tileM.tile[tileNum2].speedTile==true)
+            if (entity instanceof Player &&(gp.tileM.tile[tileNum1].speedTile==true&&gp.tileM.tile[tileNum2].speedTile==true))
             {
                ((Player)entity).speedModifier=gp.tileM.tile[tileNum1].speedModifier;
-            }else{
-               ((Player)entity).speedModifier=1;
             }
             break;
          case "right":
-            entityRightCol = (int)((entityRightAbsX+entity.speed))/Consts.TILE_SIZE;
+            entityRightCol = (int)((entityRightAbsX+entity.speed+1))/Consts.TILE_SIZE;
             tileNum1=gp.tileM.mapTileNum[entityTopRow][entityRightCol];
             tileNum2=gp.tileM.mapTileNum[entityBotRow][entityRightCol];
             if(gp.tileM.tile[tileNum1].collision==true||gp.tileM.tile[tileNum2].collision==true)
             {
                entity.collisionOn=true;
             }
-            if (entity instanceof Player&&gp.tileM.tile[tileNum1].speedTile==true||gp.tileM.tile[tileNum2].speedTile==true)
+            if (entity instanceof Player &&(gp.tileM.tile[tileNum1].speedTile==true&&gp.tileM.tile[tileNum2].speedTile==true))
             {
                ((Player)entity).speedModifier=gp.tileM.tile[tileNum1].speedModifier;
-            }else{
-               ((Player)entity).speedModifier=1;
             }
             break;
 

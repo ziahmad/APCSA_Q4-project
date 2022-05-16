@@ -1,5 +1,6 @@
 package src.Entity;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -262,6 +263,8 @@ public class Player extends Entity{
         }
         
         g2.drawImage(image,(int)screenX,(int)screenY,Consts.TILE_SIZE,Consts.TILE_SIZE,null);
+        g2.setColor(Color.BLUE);
+        g2.drawRect((int)screenX+solidArea.x, (int)screenY+solidArea.y, solidArea.width, solidArea.height);
 
     }
 }
