@@ -2,8 +2,6 @@ package src.Objects;
 
 import javax.imageio.ImageIO;
 
-import src.Main.Consts;
-
 public class OBJ_Key extends SuperObject{
    
    public OBJ_Key(int worldCol, int worldRow)

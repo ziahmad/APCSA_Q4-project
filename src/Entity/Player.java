@@ -59,7 +59,7 @@ public class Player extends Entity{
     public void getPlayerImage ()
     {
         //gets player sprites
-        //TODO: implement actual sprites
+        //TODO: implement non movement sprites
         try {
             //movement sprites
             up1 = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Player/up1.png"));
@@ -208,7 +208,7 @@ public class Player extends Entity{
     {
     
         BufferedImage image = null;
-//TODO: add if passing edge of screen, change world by screen size
+
         switch(direction)
         {
             case "up":

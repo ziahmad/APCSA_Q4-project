@@ -7,14 +7,13 @@ import java.awt.Color;
 import java.util.HashMap;
 
 import src.Main.GamePanel;
-import src.Entity.Player;
 import src.Main.Consts;
 
 public class TileManager {
     GamePanel gp;
     public Tile[] tile;
     public int mapTileNum[][];
-    static private HashMap<Color, Integer> colorMap = new HashMap<>(3);
+    static private HashMap<Color, Integer> colorMap = new HashMap<>();
         
 
     public TileManager (GamePanel gp)
