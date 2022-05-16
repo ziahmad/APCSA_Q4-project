@@ -12,7 +12,7 @@ public class OBJ_Door extends SuperObject {
       name="Door";
       try {
           //TODO: Add door Image
-         image = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/DroppedItem/door.png"));
+         image = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/DroppedItem/bomb.png"));
          
       } catch (Exception e) {
          e.printStackTrace();

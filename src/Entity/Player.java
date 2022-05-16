@@ -35,7 +35,7 @@ public class Player extends Entity{
         gp=gPanel;
         keyH=kHandler;
 
-        solidArea= new Rectangle(4*Consts.SCALE,6*Consts.SCALE,8*Consts.SCALE,10*Consts.SCALE);
+        
 
         setDefaultValues();
         getPlayerImage();
@@ -51,6 +51,8 @@ public class Player extends Entity{
 
         absX = screenX+(worldX*Consts.SCREEN_WIDTH);
         absY = screenY+(worldY*Consts.SCREEN_HEIGHT);
+
+        solidArea= new Rectangle((int)screenX+4*Consts.SCALE,(int)screenY+6*Consts.SCALE,8*Consts.SCALE,10*Consts.SCALE);
         direction = "down";
     }
 
@@ -81,6 +83,7 @@ public class Player extends Entity{
     }
     public void update()
     {
+        solidArea= new Rectangle((int)(screenX+8),(int)(screenY+12),8*Consts.SCALE,10*Consts.SCALE);
         //TODO: add stamina meter
         isMoving =keyH.downPressed||keyH.rightPressed||keyH.leftPressed||keyH.upPressed;
         
@@ -139,6 +142,9 @@ public class Player extends Entity{
             //collision
             collisionOn = false;
             gp.cChecker.checkTile(this);
+            //object touche
+            gp.cChecker.checkObject(this, true);
+            
                 //if collides
             if(collisionOn==false)
             {
@@ -177,6 +183,7 @@ public class Player extends Entity{
                         break;
                 }
             }
+            
 
             //change sprite for animation
             spriteCounter++;
@@ -264,7 +271,7 @@ public class Player extends Entity{
         
         g2.drawImage(image,(int)screenX,(int)screenY,Consts.TILE_SIZE,Consts.TILE_SIZE,null);
         g2.setColor(Color.BLUE);
-        g2.drawRect((int)screenX+solidArea.x, (int)screenY+solidArea.y, solidArea.width, solidArea.height);
+        g2.draw(solidArea);
 
     }
 }

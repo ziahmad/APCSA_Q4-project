@@ -12,7 +12,7 @@ public class OBJ_Chest extends SuperObject{
       name="chest";
       try {
           //TODO: Add chest Image
-         image = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/DroppedItem/chest.png"));
+         image = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/DroppedItem/arrow.png"));
          
       } catch (Exception e) {
          e.printStackTrace();

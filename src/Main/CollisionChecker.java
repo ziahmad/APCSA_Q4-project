@@ -1,5 +1,6 @@
 package src.Main;
 
+
 import src.Entity.Entity;
 import src.Entity.Player;
 import src.Objects.SuperObject;
@@ -18,10 +19,10 @@ public class CollisionChecker {
 
    public void checkTile(Entity entity)
    {  
-      int entityLeftAbsX = (int)entity.absX+ entity.solidArea.x;
-      int entityRightAbsX = (int)entity.absX+ entity.solidArea.x + entity.solidArea.width;
-      int entityTopAbsY = (int)entity.absY+ entity.solidArea.y;
-      int entityBotAbsY = (int)entity.absY+ entity.solidArea.y + entity.solidArea.height;
+      int entityLeftAbsX = entity.worldX*Consts.MAX_SCREEN_COL*Consts.TILE_SIZE +entity.solidArea.x;
+      int entityRightAbsX = entityLeftAbsX + entity.solidArea.width;
+      int entityTopAbsY = entity.worldY*Consts.MAX_SCREEN_ROW*Consts.TILE_SIZE+entity.solidArea.y;
+      int entityBotAbsY = entityTopAbsY + entity.solidArea.height;
       
       int entityLeftCol = entityLeftAbsX/Consts.TILE_SIZE;
       int entityRightCol = entityRightAbsX/Consts.TILE_SIZE;
@@ -40,7 +41,7 @@ public class CollisionChecker {
             {
                entity.collisionOn=true;
             }
-            if (entity instanceof Player &&(gp.tileM.tile[tileNum1].speedTile==true&&gp.tileM.tile[tileNum2].speedTile==true))
+            if (entity instanceof Player)
             {
                ((Player)entity).speedModifier=gp.tileM.tile[tileNum1].speedModifier;
             }
@@ -53,7 +54,7 @@ public class CollisionChecker {
             {
                entity.collisionOn=true;
             }
-            if (entity instanceof Player &&(gp.tileM.tile[tileNum1].speedTile==true&&gp.tileM.tile[tileNum2].speedTile==true))
+            if (entity instanceof Player)
             {
                ((Player)entity).speedModifier=gp.tileM.tile[tileNum1].speedModifier;
             }
@@ -66,7 +67,7 @@ public class CollisionChecker {
             {
                entity.collisionOn=true;
             }
-            if (entity instanceof Player &&(gp.tileM.tile[tileNum1].speedTile==true&&gp.tileM.tile[tileNum2].speedTile==true))
+            if (entity instanceof Player)
             {
                ((Player)entity).speedModifier=gp.tileM.tile[tileNum1].speedModifier;
             }
@@ -79,7 +80,7 @@ public class CollisionChecker {
             {
                entity.collisionOn=true;
             }
-            if (entity instanceof Player &&(gp.tileM.tile[tileNum1].speedTile==true&&gp.tileM.tile[tileNum2].speedTile==true))
+            if (entity instanceof Player )
             {
                ((Player)entity).speedModifier=gp.tileM.tile[tileNum1].speedModifier;
             }
@@ -89,13 +90,19 @@ public class CollisionChecker {
       }
    
    }
-   public int checkObject(Entity entity, boolean player )
+   public void checkObject(Entity entity, boolean player )
    {
-      int i=0;
+      for (SuperObject S : gp.obj) {
+
+         if(entity.worldX==S.worldX&&entity.worldY==S.worldY&&entity.solidArea.intersects(S.solidArea))
+         {
+            System.out.println("hit");
+         }
+      }
 
 
 
-      return i;
+      return;
    }
 
 
