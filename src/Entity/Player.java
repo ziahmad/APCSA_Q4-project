@@ -225,17 +225,24 @@ public class Player extends Entity{
                     gp.obj.remove(index);
                     break;
                 case"Door":
-                    for (OBJ_Key key : inventory.keys) 
+                    if(((OBJ_Door)object).locked)
                     {
-                        if(key.keyLockPairing==((OBJ_Door)object).keyLockPairing)
+                        for (OBJ_Key key : inventory.keys) 
                         {
-                            object.image=((OBJ_Door)object).unlockedDoor;
-                            object.collision=false;
-                            int i = inventory.keys.indexOf(key);
-                            inventory.keys.remove(i);
-                            break;
+                            if(key.keyLockPairing==((OBJ_Door)object).keyLockPairing)
+                            {
+                                object.image=((OBJ_Door)object).unlockedDoor;
+                                object.collision=false;
+                                ((OBJ_Door)object).locked=false;
+                                int i = inventory.keys.indexOf(key);
+                                inventory.keys.remove(i);
+                                break;
+                            }
                         }
-                    } 
+                    }else{
+                        ((OBJ_Door)object).hidden = true;
+                    }
+                     
                     break;
             }
         }
