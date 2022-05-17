@@ -6,9 +6,11 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
+import src.Items.Inventory;
 import src.Main.Consts;
 import src.Main.GamePanel;
 import src.Main.KeyHandler;
+import src.Objects.*;
 /**
  * 
  * notes or future, to get player to mmove in the screen
@@ -25,6 +27,8 @@ public class Player extends Entity{
     public int maxStamina = 600;
     public boolean sCharge = true;
     public double stamina=maxStamina;
+
+    public Inventory inventory=new Inventory(true);
 
 
 
@@ -144,10 +148,10 @@ public class Player extends Entity{
             //collision
             collisionOn = false;
             gp.cChecker.checkTile(this);
-            //object touche
+            //object touch
             int objIndex =gp.cChecker.checkObject(this, true);
             pickUpObjects(objIndex);
-                //if collides
+                //if not colliding
             if(collisionOn==false)
             {
                 switch(direction){
@@ -208,9 +212,30 @@ public class Player extends Entity{
 
     public void pickUpObjects(int index)
     {
-        if(index>0)
+        if(index>=0)
         {
-
+            String obj_Name = gp.obj.get(index).name;
+            SuperObject object =gp.obj.get(index);
+            switch(obj_Name)
+            {
+                case"Key":
+                    inventory.keys.add((OBJ_Key)object);
+                    gp.obj.set(index, null);
+                    gp.obj.remove(index);
+                    break;
+                case"Door":
+                    for (OBJ_Key key : inventory.keys) {
+                        if(key.keyLockPairing==((OBJ_Door)object).keyLockPairing)
+                        {
+                            object.image=((OBJ_Door)object).unlockedDoor;
+                            object.collision=false;
+                            int i = inventory.keys.indexOf(key);
+                            inventory.keys.remove(i);
+                            break;
+                        }
+                    } 
+                    break;
+            }
         }
     }
 

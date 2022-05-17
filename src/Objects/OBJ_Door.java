@@ -1,13 +1,20 @@
 package src.Objects;
 
+import java.awt.image.BufferedImage;
+
 import javax.imageio.ImageIO;
 
 public class OBJ_Door extends SuperObject {
-   int keyLockPairing;
-   boolean locked=false;
+   public int keyLockPairing;
+   public boolean locked=false;
+   public BufferedImage unlockedDoor;
    public OBJ_Door(int worldCol, int worldRow, int keyLockPairing)
    {
       super(worldCol, worldRow);
+      try {
+         unlockedDoor = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/TileObjects/unlockedDoor.png"));
+      } catch (Exception e) {
+      }
       
       if(keyLockPairing>=0)
          locked=true;

@@ -16,6 +16,7 @@ public class SuperObject {
    public int absX, absY;
    public int worldX, worldY;
    public int screenX, screenY;
+   public boolean hidden=false;
 
    public Rectangle solidArea;
 
@@ -28,6 +29,7 @@ public class SuperObject {
       screenY=y%Consts.MAX_SCREEN_ROW;
       worldX=x/Consts.MAX_SCREEN_COL;
       worldY=x/Consts.MAX_SCREEN_ROW;
+      
       solidArea = new Rectangle(absX,absY,Consts.TILE_SIZE,Consts.TILE_SIZE);
    }
 
@@ -71,8 +73,10 @@ public class SuperObject {
    public void draw(Graphics2D g2, GamePanel gp)
    {
 
-
-             g2.drawImage(image,screenX*Consts.TILE_SIZE,screenY*Consts.TILE_SIZE,Consts.TILE_SIZE,Consts.TILE_SIZE,null);
+            if(!hidden)
+            {
+               g2.drawImage(image,screenX*Consts.TILE_SIZE,screenY*Consts.TILE_SIZE,Consts.TILE_SIZE,Consts.TILE_SIZE,null);
+            }
              
              g2.draw(solidArea);
          

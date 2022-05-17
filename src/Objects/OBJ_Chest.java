@@ -1,14 +1,19 @@
 package src.Objects;
 
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 
 public class OBJ_Chest extends SuperObject{
-    int keyLockPairing;
-    boolean locked=false;
+    public int keyLockPairing;
+    public boolean locked=false;
+    public BufferedImage unlockedChest;
     public OBJ_Chest(int worldCol, int worldRow,int keyLockPairing)
     {
       super(worldCol, worldRow);
-      
+      try {
+        unlockedChest =ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/TileObjects/unlockedChest.png"));
+      } catch (Exception e) {
+      }
       this.keyLockPairing=keyLockPairing;
       if(keyLockPairing>=0)
       {
@@ -24,7 +29,7 @@ public class OBJ_Chest extends SuperObject{
           image = hueShift(image, keyLockPairing);
         }
         else
-          image = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/TileObjects/unlockedChest.png"));
+          image = unlockedChest;
 
       } catch (Exception e) {
          e.printStackTrace();

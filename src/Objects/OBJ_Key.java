@@ -3,7 +3,7 @@ package src.Objects;
 import javax.imageio.ImageIO;
 
 public class OBJ_Key extends SuperObject{
-   int keyLockPairing;
+   public int keyLockPairing;
 
    public OBJ_Key(int worldCol, int worldRow,int keyLockPairing)
    {

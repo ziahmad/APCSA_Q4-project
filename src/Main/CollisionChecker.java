@@ -3,6 +3,7 @@ package src.Main;
 
 import src.Entity.Entity;
 import src.Entity.Player;
+import src.Objects.OBJ_Door;
 import src.Objects.SuperObject;
 
 public class CollisionChecker {
@@ -93,38 +94,52 @@ public class CollisionChecker {
    public int checkObject(Entity entity, boolean player )
    {
 
-      for (SuperObject S : gp.obj) {
+      
+//TODO:Major Issue, If you walk into an object with collision, you get stuck
+//moving backwards deosn't help becuase can cause abilyty to walk throuhg object
 
+      for (SuperObject S : gp.obj) {
+         
          if(entity.worldX==S.worldX&&entity.worldY==S.worldY&&entity.solidArea.intersects(S.solidArea))
          {
+            
             switch(entity.direction)
             {
                case"up":
                   if(S.collision)
                   {
                      entity.collisionOn=true;
+
                   }
                   break;
                case"down":
                   if(S.collision)
                   {
                      entity.collisionOn=true;
+
                   }
                   break;
                case"left":
                   if(S.collision)
                   {
                      entity.collisionOn=true;
+
                   }
                   break;
                case"right":
                   if(S.collision)
                   {
                      entity.collisionOn=true;
+
                   }
                   break;
             }
-            return gp.obj.indexOf(S);
+            if(S instanceof OBJ_Door&&!S.collision)
+               {S.hidden=true;}
+            if(player)
+               return gp.obj.indexOf(S);
+         }else if (S instanceof OBJ_Door ){
+            S.hidden=false;
          }
       }
 

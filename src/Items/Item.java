@@ -8,4 +8,6 @@ public class Item {
    int quantity=0;
    BufferedImage bi;
    SuperObject type;
+
+   
 }
