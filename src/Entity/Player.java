@@ -26,6 +26,8 @@ public class Player extends Entity{
     public boolean sCharge = true;
     public double stamina=maxStamina;
 
+
+
     
 
     public boolean isMoving;
@@ -143,8 +145,8 @@ public class Player extends Entity{
             collisionOn = false;
             gp.cChecker.checkTile(this);
             //object touche
-            gp.cChecker.checkObject(this, true);
-            
+            int objIndex =gp.cChecker.checkObject(this, true);
+            pickUpObjects(objIndex);
                 //if collides
             if(collisionOn==false)
             {
@@ -201,6 +203,14 @@ public class Player extends Entity{
                 }*/
                 spriteCounter=0;
             }
+        }
+    }
+
+    public void pickUpObjects(int index)
+    {
+        if(index>0)
+        {
+
         }
     }
 

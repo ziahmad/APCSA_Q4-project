@@ -90,19 +90,45 @@ public class CollisionChecker {
       }
    
    }
-   public void checkObject(Entity entity, boolean player )
+   public int checkObject(Entity entity, boolean player )
    {
+      int index=-1;
       for (SuperObject S : gp.obj) {
 
          if(entity.worldX==S.worldX&&entity.worldY==S.worldY&&entity.solidArea.intersects(S.solidArea))
          {
-            System.out.println("hit");
+            switch(entity.direction)
+            {
+               case"up":
+                  if(S.collision)
+                  {
+                     entity.collisionOn=true;
+                  }
+                  break;
+               case"down":
+                  if(S.collision)
+                  {
+                     entity.collisionOn=true;
+                  }
+                  break;
+               case"left":
+                  if(S.collision)
+                  {
+                     entity.collisionOn=true;
+                  }
+                  break;
+               case"right":
+                  if(S.collision)
+                  {
+                     entity.collisionOn=true;
+                  }
+                  break;
+            }
+            return gp.obj.indexOf(S);
          }
       }
 
-
-
-      return;
+      return -1;
    }
 
 

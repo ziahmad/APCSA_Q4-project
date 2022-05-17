@@ -16,12 +16,15 @@ public class assestSetter {
    public void setObject()
    {
       //keys
-      gp.obj.add(new OBJ_Key(9,3));
-      gp.obj.add(new OBJ_Key(5,13));
+      gp.obj.add(new OBJ_Key(9,3,0));
+      gp.obj.add(new OBJ_Key(5,13,1));
+
       //doors
-      gp.obj.add(new OBJ_Door(5,3));
+      gp.obj.add(new OBJ_Door(5,3,0));
+      
+
       //chests
-      gp.obj.add(new OBJ_Chest(3,3));
+      gp.obj.add(new OBJ_Chest(3,3,1));
 
    }
 
