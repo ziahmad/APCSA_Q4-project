@@ -92,7 +92,7 @@ public class CollisionChecker {
    }
    public int checkObject(Entity entity, boolean player )
    {
-      int index=-1;
+
       for (SuperObject S : gp.obj) {
 
          if(entity.worldX==S.worldX&&entity.worldY==S.worldY&&entity.solidArea.intersects(S.solidArea))
