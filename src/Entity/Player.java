@@ -210,6 +210,7 @@ public class Player extends Entity{
         }
     }
 
+
     public void pickUpObjects(int index)
     {
         if(index>=0)
@@ -224,7 +225,8 @@ public class Player extends Entity{
                     gp.obj.remove(index);
                     break;
                 case"Door":
-                    for (OBJ_Key key : inventory.keys) {
+                    for (OBJ_Key key : inventory.keys) 
+                    {
                         if(key.keyLockPairing==((OBJ_Door)object).keyLockPairing)
                         {
                             object.image=((OBJ_Door)object).unlockedDoor;
