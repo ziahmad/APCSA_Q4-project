@@ -1,54 +1,46 @@
 package src.Main;
+
+import javax.swing.JPanel;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
-
 import src.Entity.Player;
+import src.Objects.OBJ_Bomb;
 import src.Objects.SuperObject;
 import src.Tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
-   //set defaul size for game window and tiles
-
-   public final int TILE_SIZE = Consts.SCALE*Consts.TILE_SIZE_START;
-   public final int MAX_SCREEN_COL =Consts.MAX_SCREEN_COL;
-   public final int MAX_SCREEN_ROW =Consts.MAX_SCREEN_ROW;
-
-   public final int SCREEN_WIDTH = Consts.MAX_SCREEN_COL*Consts.TILE_SIZE;
-   public final int SCREEN_HEIGHT = Consts.MAX_SCREEN_ROW*Consts.TILE_SIZE;
-
-   //fps goal
-   int fps=60;
-
-
+   //things needed for game to work
    TileManager tileM = new TileManager(this);
    KeyHandler keyH = new KeyHandler();
-   //to make the game run over time
-   Thread gThread;
-   public CollisionChecker cChecker = new CollisionChecker(this);
-   public assestSetter aSetter = new assestSetter(this);
-   public Player player = new Player(this, keyH);
-   public ArrayList<SuperObject> obj=new ArrayList<>(0);
-      
 
-   
+   Thread gThread;
+   public assetSetter aSetter = new assetSetter(this);
+   public ArrayList<SuperObject> obj=new ArrayList<>(0);
+   public CollisionChecker cChecker = new CollisionChecker(this);
+   public Player player = new Player(this, keyH);
+
+
+
+   //goal fps
+   int fps = 60;
    public GamePanel()
    {
-      this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
+      this.setPreferredSize(new Dimension(Consts.SCREEN_WIDTH,Consts.SCREEN_HEIGHT));
       this.setBackground(Color.BLACK);
       this.setDoubleBuffered(true);
       this.addKeyListener(keyH);
       this.setFocusable(true);
-      
    }
 
    public void setupGame() {
       aSetter.setObject();
    }
+
 
    public void startGrameThread()
    {
@@ -59,44 +51,46 @@ public class GamePanel extends JPanel implements Runnable {
    }
 
    @Override
-   //the gameloop (https://www.youtube.com/watch?v=VpH33Uw-_0E&list=PL_QPQmz5C6WUF-pOQDsbsKbaBZqXj4qSq&index=2)
-   public void run() {
+    //the gameloop (https://www.youtube.com/watch?v=VpH33Uw-_0E&list=PL_QPQmz5C6WUF-pOQDsbsKbaBZqXj4qSq&index=2)
+   public void run() 
+   {
 
-      double drawInterval = 1000000000/fps;
-      double dt =0;
-      long lastTime = System.nanoTime();
-      long currentTime;
-      long timer = 0;
-      int drawcount = 0;
-
-      /*while thread exists, update then repaint*/
-      while (gThread!=null) //while thread exists
-      {
-
-         currentTime = System.nanoTime();
-         
-         dt+=(currentTime-lastTime)/drawInterval;
-         timer += (currentTime-lastTime);
-         lastTime=currentTime;
-         if(dt>=1)
+         double drawInterval = 1000000000/fps;
+         double dt =0;
+         long lastTime = System.nanoTime();
+         long currentTime;
+         long timer = 0;
+         int drawcount = 0;
+   
+         /*while thread exists, update then repaint*/
+         while (gThread!=null) //while thread exists
          {
-            //calls update
-            update();
-
-            //calls paint component
-            repaint();
-            dt--;
-            drawcount++;
+   
+            currentTime = System.nanoTime();
             
+            dt+=(currentTime-lastTime)/drawInterval;
+            timer += (currentTime-lastTime);
+            lastTime=currentTime;
+            if(dt>=1)
+            {
+               //calls update
+               update();
+   
+               //calls paint component
+               repaint();
+               dt--;
+               drawcount++;
+               
+            }
+            if (timer>=1000000000)
+            {
+               System.out.println("FPS: "+drawcount);
+               drawcount=0;
+               timer=0;
+               System.out.println("Stamina:"+player.stamina+" "+player.sCharged);
+               System.out.println(player.speed);
+            }
          }
-         if (timer>=1000000000)
-         {
-            System.out.println("FPS: "+drawcount);
-            drawcount=0;
-            timer=0;
-            System.out.println("Stamina:"+player.stamina+" "+player.sCharge);
-         }
-      }
       
    }
 
@@ -104,10 +98,20 @@ public class GamePanel extends JPanel implements Runnable {
    public void update ()
    {
       player.update();
-      
+      for (int i= obj.size()-1; i>=0;i--) {
+         OBJ_Bomb b;
+         if(obj.get(i) instanceof OBJ_Bomb)
+         {
+            b=((OBJ_Bomb)(obj.get(i))).bombCountDown((OBJ_Bomb)obj.get(i));
+            if(b!=null)
+            {
+               obj.remove(i);
+            }
+         }
+         
+      }
 
    }
-
 
    //render
    public void paintComponent(Graphics g)
@@ -127,7 +131,12 @@ public class GamePanel extends JPanel implements Runnable {
       //then player
       player.draw(g2);
 
+      //then ui
+     // ui.draw(g2);
       g2.dispose();//used to save on memory
 
    }
+
+
+   
 }

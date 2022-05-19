@@ -1,13 +1,12 @@
 package src.Main;
 
-import src.Objects.OBJ_Chest;
-import src.Objects.OBJ_Door;
-import src.Objects.OBJ_Key;
+import src.Objects.*;
 
-public class assestSetter {
+
+public class assetSetter {
    GamePanel gp;
 
-   public assestSetter(GamePanel gp)
+   public assetSetter(GamePanel gp)
    {
       this.gp = gp;
 
@@ -25,7 +24,10 @@ public class assestSetter {
 
       //chests
       gp.obj.add(new OBJ_Chest(3,3,1));
-
+      
+      //test
+      gp.obj.add(new OBJ_Bomb(43,44,true));
+      
    }
 
 }

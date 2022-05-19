@@ -30,7 +30,7 @@ public class SuperObject {
       worldX=x/Consts.MAX_SCREEN_COL;
       worldY=x/Consts.MAX_SCREEN_ROW;
       
-      solidArea = new Rectangle(absX,absY,Consts.TILE_SIZE,Consts.TILE_SIZE);
+      solidArea = new Rectangle(screenX*Consts.TILE_SIZE,screenY*Consts.TILE_SIZE,Consts.TILE_SIZE,Consts.TILE_SIZE);
    }
 
    public BufferedImage hueShift(BufferedImage bi, int shift)
@@ -69,6 +69,7 @@ public class SuperObject {
       
       
    }
+   
 
    public void draw(Graphics2D g2, GamePanel gp)
    {

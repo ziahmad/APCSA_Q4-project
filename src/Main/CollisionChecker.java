@@ -6,6 +6,7 @@ import src.Entity.Player;
 import src.Objects.OBJ_Door;
 import src.Objects.SuperObject;
 
+
 public class CollisionChecker {
    
    private GamePanel gp;
@@ -91,55 +92,88 @@ public class CollisionChecker {
       }
    
    }
+
    public int checkObject(Entity entity, boolean player )
    {
-
+      double entityleftX = entity.solidArea.x;
+      double entityrightX = entity.solidArea.x+entity.solidArea.getWidth();
+      double entitytopY = entity.solidArea.y;
+      double entitybotY = entity.solidArea.y+entity.solidArea.getHeight();
       
 //TODO:Major Issue, If you walk into an object with collision, you get stuck
 //moving backwards deosn't help becuase can cause abilyty to walk throuhg object
 
       for (SuperObject S : gp.obj) {
          
-         if(entity.worldX==S.worldX&&entity.worldY==S.worldY&&entity.solidArea.intersects(S.solidArea))
+         if(entity.worldX==S.worldX&&entity.worldY==S.worldY)
          {
             
             switch(entity.direction)
             {
                case"up":
-                  if(S.collision)
-                  {
-                     entity.collisionOn=true;
 
+                  if(S.solidArea.contains(entityleftX, entitytopY-entity.speed)||S.solidArea.contains(entityrightX, entitytopY-entity.speed))
+                  {
+                     
+                     if(S.collision)
+                     {
+                        entity.collisionOn=true;
+                     
+                     }
+                     if(player)
+                        return gp.obj.indexOf(S);
                   }
                   break;
                case"down":
-                  if(S.collision)
+                  if(S.solidArea.contains(entityleftX, entitybotY+entity.speed)||S.solidArea.contains(entityrightX, entitybotY+entity.speed))
                   {
-                     entity.collisionOn=true;
+                     if(S.collision)
+                     {
+                        entity.collisionOn=true;
 
+                     }
+                     if(player)
+                        return gp.obj.indexOf(S);
                   }
+                  
                   break;
                case"left":
-                  if(S.collision)
+                  if(S.solidArea.contains(entityleftX-entity.speed, entitytopY)||S.solidArea.contains(entityleftX, entitybotY))
                   {
-                     entity.collisionOn=true;
+                     if(S.collision)
+                     {
+                        entity.collisionOn=true;
 
+                     }
+                     if(player)
+                        return gp.obj.indexOf(S);
                   }
                   break;
                case"right":
-                  if(S.collision)
-                  {
-                     entity.collisionOn=true;
+                  if(S.solidArea.contains(entityrightX+entity.speed, entitytopY)||S.solidArea.contains(entityrightX+entity.speed, entitybotY))
+                     {
+                     if(S.collision)
+                     {
+                        entity.collisionOn=true;
 
+                     }
+                     if(player)
+                        return gp.obj.indexOf(S);
                   }
                   break;
             }
+         
+         }
+         //open and close door
+         if(entity.worldX==S.worldX&&entity.worldY==S.worldY&&entity.solidArea.intersects(S.solidArea))
+         {
+
             if(S instanceof OBJ_Door&&!S.collision)
-               {S.hidden=true;}
-            if(player)
-               return gp.obj.indexOf(S);
-         }else if (S instanceof OBJ_Door ){
-            S.hidden=false;
+            {
+               S.hidden=true;
+            }
+         }else if (S instanceof OBJ_Door){
+               S.hidden=false;
          }
       }
 

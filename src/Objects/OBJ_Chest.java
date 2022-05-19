@@ -21,15 +21,13 @@ public class OBJ_Chest extends SuperObject{
       }
       collision =true;
 
-      name="chest";
+      name="Chest";
       try {
         if(locked)
         {
           image = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/TileObjects/lockedChest.png"));
           image = hueShift(image, keyLockPairing);
         }
-        else
-          image = unlockedChest;
 
       } catch (Exception e) {
          e.printStackTrace();
