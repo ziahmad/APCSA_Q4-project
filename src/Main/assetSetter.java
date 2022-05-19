@@ -26,7 +26,7 @@ public class assetSetter {
       gp.obj.add(new OBJ_Chest(3,3,1));
       
       //test
-      gp.obj.add(new OBJ_Bomb(43,44,true));
+      
       
    }
 

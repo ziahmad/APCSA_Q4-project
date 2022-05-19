@@ -317,8 +317,6 @@ public class Player extends Entity {
                                 if(object.name.equals(inventory.inventory[i].type.name))
                                 {
                                     inventory.inventory[i].quantity+=((SuperDropedItem)object).quantity;
-                                    gp.obj.set(index, null);
-                                    gp.obj.remove(index);
                                     break;
                                
                                 }
@@ -330,11 +328,14 @@ public class Player extends Entity {
                             }
                            
                        }
+                       gp.obj.set(index, null);
+                       gp.obj.remove(index);
+                                    
                        if(((SuperDropedItem)object).quantity!=1)
                        {
                        System.out.println("You picked up "+((SuperDropedItem)object).quantity+" "+object.name+"s" );
                        }else{
-                        System.out.println("You picked up "+((SuperDropedItem)object).quantity+" "+object.name );
+                        System.out.println("You picked up "+1+" "+object.name );
                        }
                    }
                    break;

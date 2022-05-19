@@ -5,12 +5,14 @@ import java.awt.image.BufferedImage;
 import java.awt.Color;
 
 public class OBJ_Bomb extends SuperDropedItem{
-   public int counter =180;
-   public int quantity = 1;
+   public int maxCounter =100;
+   public int counter =maxCounter+50;
+
    
    public OBJ_Bomb (int worldCol, int worldRow,boolean armed)
    {
       super(worldCol, worldRow);
+      quantity=1;
       this.armed = armed;
 
       name="Bomb";
@@ -38,7 +40,7 @@ public class OBJ_Bomb extends SuperDropedItem{
       if(armed)
       {
          counter--;
-         image= hueShift(image, counter/100);
+         image= hueShift(image, counter/maxCounter);
       }else{
          return null;
       }
@@ -54,7 +56,7 @@ public class OBJ_Bomb extends SuperDropedItem{
       //slightly modified by Zimraan Ahmad
       BufferedImage raw,processed;
       raw = bi;
-      float hue = ((shift));///360.0f;//.25f;//
+      float hue = ((shift));
       int WIDTH = raw.getWidth();
       int HEIGHT = raw.getHeight();
       processed = new BufferedImage(WIDTH,HEIGHT,raw.getType());
@@ -71,7 +73,7 @@ public class OBJ_Bomb extends SuperDropedItem{
             Color.RGBtoHSB(R,G,B,HSV);
                if(RGB!=0)
                {
-               processed.setRGB(X,Y,Color.getHSBColor(hue,HSV[1],HSV[2]+(200/(shift+1))/200).getRGB());
+               processed.setRGB(X,Y,Color.getHSBColor(hue,HSV[1],HSV[2]+(maxCounter/(shift+1))/maxCounter+.0085f).getRGB());
                }else{
                   processed.setRGB(X, Y, raw.getRGB(X, Y));
                }
