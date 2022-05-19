@@ -159,6 +159,7 @@ public class Player extends Entity {
 
       }
    }
+   
    public void checkDirection(boolean isMoving)
    {
       if (keyH.upPressed)
@@ -183,6 +184,7 @@ public class Player extends Entity {
       }
       
    }
+
    public void checkCollision()
    {
       collisionOn = false;
@@ -191,6 +193,7 @@ public class Player extends Entity {
       int objIndex =gp.cChecker.checkObject(this, true);
       pickUpObjects(objIndex);
    }
+
    public void move()
    {
       absX = screenX+(worldX*Consts.SCREEN_WIDTH);

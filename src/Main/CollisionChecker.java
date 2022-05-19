@@ -103,7 +103,8 @@ public class CollisionChecker {
 //TODO:Major Issue, If you walk into an object with collision, you get stuck
 //moving backwards deosn't help becuase can cause abilyty to walk throuhg object
 
-      for (SuperObject S : gp.obj) {
+      for (SuperObject S : gp.obj) 
+      {
          
          if(entity.worldX==S.worldX&&entity.worldY==S.worldY)
          {
