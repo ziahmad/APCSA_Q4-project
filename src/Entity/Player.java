@@ -99,7 +99,10 @@ public class Player extends Entity {
    public void update()
    {
       //set solid area of current player position
-      solidArea= new Rectangle((int)(screenX+8),(int)(screenY+12),8*Consts.SCALE,10*Consts.SCALE);
+      solidArea.x= (int)screenX+8;
+      solidArea.y= (int)screenY+12;
+      
+      
       
       isMoving =keyH.downPressed||keyH.rightPressed||keyH.leftPressed||keyH.upPressed;
       if(isMoving)
