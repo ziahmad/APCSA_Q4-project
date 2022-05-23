@@ -5,7 +5,6 @@ import javax.imageio.ImageIO;
 import java.util.Random;
 
 import src.Main.GamePanel;
-import src.Main.UI;
 
 
 public class NPC1 extends Entity {
