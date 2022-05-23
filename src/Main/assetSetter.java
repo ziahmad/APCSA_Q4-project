@@ -33,7 +33,7 @@ public class assetSetter {
 
    public void setNPCs()
    {
-      gp.npcs.add(new NPC1(gp, 41, 40));
+      gp.npcs.add(new NPC1(gp, 39, 38));
       gp.npcs.get(0).dialogue.add("Hi lad!\n...");
       gp.npcs.get(0).dialogue.add("This vally has been infested with \nzombies.\n...");
       gp.npcs.get(0).dialogue.add("That sword of yours seems sharp..");
@@ -56,7 +56,7 @@ public class assetSetter {
       gp.npcs.get(4).dialogue.add("My dad got mad and locked my \nboat in the maze\n...");
       gp.npcs.get(4).dialogue.add("I haven't seen him since.");
       
-      gp.npcs.add(new NPC3(gp, 40, 41));
+      gp.npcs.add(new NPC3(gp, 40, 42));
       gp.npcs.get(5).dialogue.add("Who are you?");
 
       

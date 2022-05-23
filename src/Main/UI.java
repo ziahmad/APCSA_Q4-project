@@ -61,6 +61,7 @@ public class UI {
       //dialogue state
       else if (gp.gameState==gp.DIALOGUE_STATE)
       {
+         drawSideBar(Consts.SCREEN_WIDTH,0,Consts.SCREEN_HEIGHT,gp.sideBarWidth);
          drawDialogueScreen();
       }
    }
