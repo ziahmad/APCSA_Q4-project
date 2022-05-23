@@ -61,7 +61,6 @@ public class Player extends Entity {
       screenX=Consts.SCREEN_WIDTH/2-(Consts.TILE_SIZE/2);
       screenY=Consts.SCREEN_HEIGHT/2-(Consts.TILE_SIZE/2);
       //speed
-         //TODO check what start speed should be
       speed =defaultSpeed;
 
       absX = screenX+(worldX*Consts.SCREEN_WIDTH);
@@ -108,13 +107,14 @@ public class Player extends Entity {
       
       
       isMoving =keyH.downPressed||keyH.rightPressed||keyH.leftPressed||keyH.upPressed;
+      checkCollision();
       if(isMoving)
       {
-      updateStamina(sCharged, isMoving);
-      checkDirection(isMoving);
-      checkCollision();
-      move();
-      }
+          updateStamina(sCharged, isMoving);
+          checkDirection(isMoving);
+          checkCollision();
+          move();
+    }
 
    
    }

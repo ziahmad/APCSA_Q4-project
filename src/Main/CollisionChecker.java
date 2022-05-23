@@ -165,7 +165,7 @@ public class CollisionChecker {
          
          }
          //open and close door
-         if(entity.worldX==S.worldX&&entity.worldY==S.worldY&&entity.solidArea.intersects(S.solidArea))
+         if(player&&entity.worldX==S.worldX&&entity.worldY==S.worldY&&entity.solidArea.intersects(S.solidArea))
          {
 
             if(S instanceof OBJ_Door&&!S.collision)

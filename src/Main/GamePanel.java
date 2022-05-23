@@ -110,13 +110,13 @@ public class GamePanel extends JPanel implements Runnable {
    {
       if(gameState == PLAY_STATE)
       {
-         player.update();
          //onbjects
          updateObjects();
          //NPC
          for (Entity entity : npcs) {
-               entity.update();
+            entity.update();
          }
+         player.update();
          
       }else if ( gameState == PAUSE_STATE)
       {

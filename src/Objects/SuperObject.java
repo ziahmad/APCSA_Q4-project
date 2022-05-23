@@ -28,7 +28,7 @@ public class SuperObject {
       screenX=x%Consts.MAX_SCREEN_COL;
       screenY=y%Consts.MAX_SCREEN_ROW;
       worldX=x/Consts.MAX_SCREEN_COL;
-      worldY=x/Consts.MAX_SCREEN_ROW;
+      worldY=y/Consts.MAX_SCREEN_ROW;
       
       solidArea = new Rectangle(screenX*Consts.TILE_SIZE,screenY*Consts.TILE_SIZE,Consts.TILE_SIZE,Consts.TILE_SIZE);
    }

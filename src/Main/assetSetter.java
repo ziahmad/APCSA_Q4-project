@@ -34,9 +34,9 @@ public class assetSetter {
    public void setNPCs()
    {
       gp.npcs.add(new NPC1(gp, 41, 40));
-      gp.npcs.add(new NPC1(gp, 41, 40));
+      gp.npcs.add(new NPC1(gp, 4, 3));
       gp.npcs.add(new NPC2(gp, 40, 40));
-      gp.npcs.add(new NPC2(gp, 40, 40));
+      gp.npcs.add(new NPC2(gp, 28, 40));
       gp.npcs.add(new NPC3(gp, 40, 41));
       gp.npcs.add(new NPC3(gp, 40, 41));
       

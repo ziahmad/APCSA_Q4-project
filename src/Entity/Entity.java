@@ -46,10 +46,10 @@ public class Entity {
       screenX=x%Consts.MAX_SCREEN_COL;
       screenY=y%Consts.MAX_SCREEN_ROW;
       worldX=x/Consts.MAX_SCREEN_COL;
-      worldY=x/Consts.MAX_SCREEN_ROW;
+      worldY=y/Consts.MAX_SCREEN_ROW;
 
 
-      solidArea = new Rectangle((int)screenX*Consts.TILE_SIZE,(int)screenY*Consts.TILE_SIZE,Consts.TILE_SIZE,Consts.TILE_SIZE);
+      solidArea = new Rectangle((int)(screenX*Consts.TILE_SIZE)+3*Consts.SCALE,(int)(screenY*Consts.TILE_SIZE)+3*Consts.SCALE,Consts.TILE_SIZE-5*Consts.SCALE,Consts.TILE_SIZE-6);
    }
    public void setAction()
    {
@@ -111,8 +111,8 @@ public class Entity {
                 }
                 break;
             }
-            this.solidArea.x=(int)(screenX*Consts.TILE_SIZE);
-            this.solidArea.y=(int)(screenY*Consts.TILE_SIZE);
+            this.solidArea.x=(int)(screenX*Consts.TILE_SIZE)+2*Consts.SCALE;
+            this.solidArea.y=(int)(screenY*Consts.TILE_SIZE)+3*Consts.SCALE;
         }
            
            
