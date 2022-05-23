@@ -3,9 +3,8 @@ package src.Objects;
 import javax.imageio.ImageIO;
 
 import src.Events.Hurt;
-import src.Main.Consts;
 import src.Main.GamePanel;
-import src.Main.Window;
+
 
 import java.awt.image.BufferedImage;
 import java.awt.Color;

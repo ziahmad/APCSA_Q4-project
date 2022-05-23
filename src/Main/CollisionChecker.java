@@ -2,7 +2,6 @@ package src.Main;
 
 
 import java.util.ArrayList;
-import java.awt.Rectangle;
 
 import src.Entity.Entity;
 import src.Entity.Player;

@@ -1,7 +1,6 @@
 package src.Main;
 
 import src.Entity.*;
-import src.Events.Hurt;
 import src.Events.Win;
 import src.Objects.*;
 
