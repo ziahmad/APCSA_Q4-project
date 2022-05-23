@@ -36,7 +36,7 @@ public class OBJ_Bomb extends SuperDropedItem{
       {
          image= hueShift(image, counter/100);
          collision=true;
-         rect = new Hurt(screenX+worldX*Consts.TILE_SIZE,screenY+worldY*Consts.TILE_SIZE, damage,3 ,3);
+         rect = new Hurt(worldCol,worldRow, damage,3 ,3);
       }
 
 

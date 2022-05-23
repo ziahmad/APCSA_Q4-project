@@ -7,33 +7,38 @@ public class Event {
     public String name;
     public int absX, absY;
     public int worldX, worldY;
+    public int screenCol, screenRow;
     public int screenX, screenY;
 
     public Rectangle solidArea;
 
     public Event(int x, int y, int sizeX, int sizeY)
    {
-      int shirnk= 2*Consts.SCALE;
+      int shrink= 2*Consts.SCALE;
       absX=x*Consts.TILE_SIZE;
       absY=y*Consts.TILE_SIZE;
-      screenX=x%Consts.MAX_SCREEN_COL;
-      screenY=y%Consts.MAX_SCREEN_ROW;
+      screenCol=x%Consts.MAX_SCREEN_COL;
+      screenRow=y%Consts.MAX_SCREEN_ROW;
       worldX=x/Consts.MAX_SCREEN_COL;
       worldY=y/Consts.MAX_SCREEN_ROW;
+      screenX=screenCol*Consts.TILE_SIZE;
+      screenY=screenRow*Consts.TILE_SIZE;
       
-      solidArea = new Rectangle((screenX-sizeX/2)*Consts.TILE_SIZE+shirnk,(screenY-sizeY/2)*Consts.TILE_SIZE+shirnk,(Consts.TILE_SIZE*sizeX)-2*shirnk,(Consts.TILE_SIZE*sizeY)-2*shirnk);
+      solidArea = new Rectangle(screenX-(sizeX/2)*Consts.TILE_SIZE+shrink,screenY-(sizeY/2)*Consts.TILE_SIZE+shrink,(Consts.TILE_SIZE*sizeX)-2*shrink,(Consts.TILE_SIZE*sizeY)-2*shrink);
    }
    public Event(int x, int y)
    {
-      int shirnk= 2*Consts.SCALE;
+      int shrink= 2*Consts.SCALE;
       absX=x*Consts.TILE_SIZE;
       absY=y*Consts.TILE_SIZE;
-      screenX=x%Consts.MAX_SCREEN_COL;
-      screenY=y%Consts.MAX_SCREEN_ROW;
+      screenCol=x%Consts.MAX_SCREEN_COL;
+      screenRow=y%Consts.MAX_SCREEN_ROW;
       worldX=x/Consts.MAX_SCREEN_COL;
       worldY=y/Consts.MAX_SCREEN_ROW;
+      screenX=screenCol*Consts.TILE_SIZE;
+      screenY=screenRow*Consts.TILE_SIZE;
 
-      solidArea = new Rectangle(screenX*Consts.TILE_SIZE+shirnk,screenY*Consts.TILE_SIZE+shirnk,Consts.TILE_SIZE-2*shirnk,Consts.TILE_SIZE-2*shirnk);
+      solidArea = new Rectangle(screenX+shrink,screenY+shrink,Consts.TILE_SIZE-2*shrink,Consts.TILE_SIZE-2*shrink);
    }
       
     

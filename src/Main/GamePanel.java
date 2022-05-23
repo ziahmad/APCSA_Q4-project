@@ -176,7 +176,9 @@ public class GamePanel extends JPanel implements Runnable {
                events.add(b.rect);
             }if(b.explosionTime<=0)
             {
-               events.remove(events.indexOf(b.rect));
+               int c =events.indexOf(b.rect);
+               if (c!=-1)
+               events.remove(c);
                obj.remove(i);
             }
          }
