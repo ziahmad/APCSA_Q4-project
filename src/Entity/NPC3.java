@@ -65,7 +65,15 @@ public class NPC3 extends Entity {
       }
          System.out.print("");
     }
-    
+    public void speak()
+    {
+      gp.ui.currentDialogue = dialogue.get(dialogueIndex);
+      dialogueIndex++;
+      if(dialogueIndex>=dialogue.size())
+      {
+         dialogueIndex=0;
+      }
+    }
    
 }
 

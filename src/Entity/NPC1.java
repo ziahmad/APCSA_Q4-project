@@ -5,6 +5,7 @@ import javax.imageio.ImageIO;
 import java.util.Random;
 
 import src.Main.GamePanel;
+import src.Main.UI;
 
 
 public class NPC1 extends Entity {
@@ -15,6 +16,7 @@ public class NPC1 extends Entity {
       speed=.03;
    
       getImage();
+      setDialogue();
    }
 
    public void getImage ()
@@ -39,6 +41,8 @@ public class NPC1 extends Entity {
             e.printStackTrace();
         }
 
+    }
+    public void setDialogue() {
     }
 
     public void setAction()
@@ -66,5 +70,15 @@ public class NPC1 extends Entity {
          System.out.print("");
     }
     
+    public void speak()
+    {
+      gp.ui.currentDialogue = dialogue.get(dialogueIndex);
+      dialogueIndex++;
+      if(dialogueIndex>=dialogue.size())
+      {
+         dialogueIndex=0;
+      }
+      System.out.println(dialogueIndex);
+    }
    
 }

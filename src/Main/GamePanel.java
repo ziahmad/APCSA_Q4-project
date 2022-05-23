@@ -9,7 +9,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import src.Entity.Entity;
-import src.Entity.NPC1;
 import src.Entity.Player;
 import src.Objects.OBJ_Bomb;
 import src.Objects.SuperObject;
@@ -19,7 +18,7 @@ public class GamePanel extends JPanel implements Runnable {
    //things needed for game to work
    TileManager tileM = new TileManager(this);
    KeyHandler keyH = new KeyHandler(this);
-   UI ui = new UI(this);
+   public UI ui = new UI(this);
    Thread gThread;
 
    public assetSetter aSetter = new assetSetter(this);
@@ -33,6 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
    public int gameState;
    public final int PLAY_STATE = 1; 
    public final int PAUSE_STATE = 2; 
+   public final int DIALOGUE_STATE = 3; 
 
 
    //goal fps

@@ -107,66 +107,67 @@ public class Player extends Entity {
       
       
       isMoving =keyH.downPressed||keyH.rightPressed||keyH.leftPressed||keyH.upPressed;
-      checkCollision();
-      if(isMoving)
-      {
+
           updateStamina(sCharged, isMoving);
-          checkDirection(isMoving);
+          checkDirection();
           checkCollision();
           move();
-    }
+
 
    
    }
 
    public void updateStamina(boolean sCharged, boolean isMoving)
    {
-      if(stamina>=maxStamina)
-      {
-         stamina=maxStamina;
-      }
-      if (stamina<0)
-         {
-                this.sCharged=false;
-                stamina=0;
-         }
-      if(sCharged)
-      {
-         if(isMoving&&keyH.shiftPressed)
-         {
-            speed=defaultSpeed*sprintScale*speedModifier;
-            stamina-=3;
-            
-         }else if(stamina<maxStamina)
-         {
-            stamina+=1;
-         }
+       if (isMoving)
+       {
+        if(stamina>=maxStamina)
+        {
+           stamina=maxStamina;
+        }
+        if (stamina<0)
+           {
+                  this.sCharged=false;
+                  stamina=0;
+           }
+        if(sCharged)
+        {
+           if(isMoving&&keyH.shiftPressed)
+           {
+              speed=defaultSpeed*sprintScale*speedModifier;
+              stamina-=3;
 
-         if(isMoving&&!keyH.shiftPressed)
-         {
-            speed=defaultSpeed*speedModifier;
-         }
-         
+           }else if(stamina<maxStamina)
+           {
+              stamina+=1;
+           }
 
-
-      }else
-      {
-         speed=defaultSpeed*.6*speedModifier;
-         if(stamina<maxStamina)
-         {
-            stamina+=1;
-         }
-         if(stamina>=maxStamina)
-         {
-            this.sCharged=true;
-            speed=defaultSpeed*speedModifier;
-         }
+           if(isMoving&&!keyH.shiftPressed)
+           {
+              speed=defaultSpeed*speedModifier;
+           }
 
 
-      }
+
+        }else
+        {
+           speed=defaultSpeed*.6*speedModifier;
+           if(stamina<maxStamina)
+           {
+              stamina+=1;
+           }
+           if(stamina>=maxStamina)
+           {
+              this.sCharged=true;
+              speed=defaultSpeed*speedModifier;
+           }
+
+
+        }
+    }
    }
    
-   public void checkDirection(boolean isMoving)
+   public void checkDirection()
    {
       if (keyH.upPressed)
       {
@@ -194,87 +195,96 @@ public class Player extends Entity {
    public void checkCollision()
    {
       collisionOn = false;
-      gp.cChecker.checkTile(this);
       //object touch
       int objIndex =gp.cChecker.checkObject(this, true);
       pickUpObjects(objIndex);
       //check NPC Collison
-      int npcIndex =gp.cChecker.checkEntity(this, gp.npcs);
-      interactNPC(npcIndex);
+      
+      if(isMoving)
+      {
+        gp.cChecker.checkTile(this);
+        int npcIndex =gp.cChecker.checkEntity(this, gp.npcs);
+        interactNPC(npcIndex);
+      }
    }
 
     public void interactNPC(int npcIndex) {
         if(npcIndex!=-1)
         {
-            System.out.println("bump");
+            gp.gameState = gp.DIALOGUE_STATE;
+            gp.npcs.get(npcIndex).speak();
         }
     }
 
-public void move()
+    public void move()
    {
-      absX = screenX+(worldX*Consts.SCREEN_WIDTH);
-      absY = screenY+(worldY*Consts.SCREEN_HEIGHT);
+       if(isMoving)
+       {
 
-      if(collisionOn==false)
-      {
-         switch(direction)
-         {
-            case "up":
-                screenY-=speed;
-                if(screenY<=0&&worldY>0)
-                {
-                    screenY=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
-                    worldY--;
-                    shopKeepSpawn = (int)(Math.random()*10);
-                }
-                break;
-            case "down":
-                screenY+=speed;
-                if(screenY>=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE&&worldY<Consts.WORLD_SCREENS_HEIGHT)
-                {
-                    screenY=(0)*Consts.TILE_SIZE;
-                    worldY++;
-                    shopKeepSpawn = (int)(Math.random()*10);
-                }
-                break;
-            case "left":
-                screenX-=speed;
-                if(screenX<=0&&worldX>0)
-                {
-                    screenX=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
-                    worldX--;
-                    shopKeepSpawn = (int)(Math.random()*10);
-                }
-                break;
-            case "right":
-                screenX+=speed;
-                if(screenX>=(Consts.MAX_SCREEN_COL-1)*Consts.TILE_SIZE&&worldX<Consts.WORLD_SCREENS_WIDTH)
-                {
-                    screenX=(0)*Consts.TILE_SIZE;
-                    worldX++;
-                    shopKeepSpawn = (int)(Math.random()*10);
-                }
-                break;
-         }
-      }
-            
+          absX = screenX+(worldX*Consts.SCREEN_WIDTH);
+          absY = screenY+(worldY*Consts.SCREEN_HEIGHT);
 
-      //change sprite for animation
-      spriteCounter++;
-      if(spriteCounter>12/(speed/defaultSpeed))
-      {
-          spriteNum++;
-          spriteNum%=2;
-          /*
-          if(spriteNum==1)
-          {
-              spriteNum=2;
-          }else if(spriteNum==2)
-          {
-              spriteNum=1;
-          }*/
-          spriteCounter=0;
-      }
+        if(collisionOn==false)
+        {
+           switch(direction)
+           {
+              case "up":
+                  screenY-=speed;
+                  if(screenY<=0&&worldY>0)
+                  {
+                      screenY=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
+                      worldY--;
+                      shopKeepSpawn = (int)(Math.random()*10);
+                  }
+                  break;
+              case "down":
+                  screenY+=speed;
+                  if(screenY>=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE&&worldY<Consts.WORLD_SCREENS_HEIGHT)
+                  {
+                      screenY=(0)*Consts.TILE_SIZE;
+                      worldY++;
+                      shopKeepSpawn = (int)(Math.random()*10);
+                  }
+                  break;
+              case "left":
+                  screenX-=speed;
+                  if(screenX<=0&&worldX>0)
+                  {
+                      screenX=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
+                      worldX--;
+                      shopKeepSpawn = (int)(Math.random()*10);
+                  }
+                  break;
+              case "right":
+                  screenX+=speed;
+                  if(screenX>=(Consts.MAX_SCREEN_COL-1)*Consts.TILE_SIZE&&worldX<Consts.WORLD_SCREENS_WIDTH)
+                  {
+                      screenX=(0)*Consts.TILE_SIZE;
+                      worldX++;
+                      shopKeepSpawn = (int)(Math.random()*10);
+                  }
+                  break;
+           }
+        }
+
+
+        //change sprite for animation
+        spriteCounter++;
+        if(spriteCounter>12/(speed/defaultSpeed))
+        {
+            spriteNum++;
+            spriteNum%=2;
+            /*
+            if(spriteNum==1)
+            {
+                spriteNum=2;
+            }else if(spriteNum==2)
+            {
+                spriteNum=1;
+            }*/
+            spriteCounter=0;
+        }
+    }
    }
 
 

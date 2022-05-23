@@ -1,6 +1,7 @@
 package src.Entity;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.awt.Graphics2D;
 
 import src.Main.Consts;
@@ -31,7 +32,10 @@ public class Entity {
     public Rectangle solidArea;
     public boolean collisionOn = false;
 
+    //for NPCs
     public int actionLockCounter=0;
+    public ArrayList<String> dialogue = new ArrayList<>(0);
+    int dialogueIndex = 0;
 
     public Entity(GamePanel gp)
     {
@@ -52,6 +56,10 @@ public class Entity {
       solidArea = new Rectangle((int)(screenX*Consts.TILE_SIZE)+3*Consts.SCALE,(int)(screenY*Consts.TILE_SIZE)+3*Consts.SCALE,Consts.TILE_SIZE-5*Consts.SCALE,Consts.TILE_SIZE-6);
    }
    public void setAction()
+   {
+
+   }
+   public void speak()
    {
 
    }
