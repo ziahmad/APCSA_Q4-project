@@ -75,6 +75,17 @@ public class UI {
          int y= gp.getHeight()/2;
          g2.drawString("YOU WIN!",x,y);
       }
+      //lose state
+      else if (gp.gameState==gp.LOSE_STATE)
+      {
+         drawSideBar(Consts.SCREEN_WIDTH,0,Consts.SCREEN_HEIGHT,gp.sideBarWidth);
+         drawSubWindow(1*Consts.TILE_SIZE, 1*Consts.TILE_SIZE, gp.getWidth()-2*Consts.TILE_SIZE, gp.getHeight()-2*Consts.TILE_SIZE);
+         g2.setColor(Color.RED);
+         g2.setFont(arial_80b);
+         int x = getXForCenterText("YOU LOSE :(");
+         int y= gp.getHeight()/2;
+         g2.drawString("YOU LOSE :(",x,y);
+      }
    }
    public void drawSideBar(int x, int y, int height, int width)
    {

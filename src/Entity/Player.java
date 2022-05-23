@@ -128,6 +128,11 @@ public class Player extends Entity {
        {
            gp.gameState=gp.WIN_STATE;
        }
+       if(health<=0)
+       {
+           alive = false;
+           gp.gameState=gp.LOSE_STATE;
+       }
 
 
    

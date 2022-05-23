@@ -36,6 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
    public final int PAUSE_STATE = 2; 
    public final int DIALOGUE_STATE = 3; 
    public final int WIN_STATE = 4; 
+   public final int LOSE_STATE = 5; 
 
    int sideBarWidth=3*Consts.TILE_SIZE;
 
