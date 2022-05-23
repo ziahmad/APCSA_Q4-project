@@ -31,7 +31,7 @@ public class Player extends Entity {
    //health
    public boolean alive = true;
    public int maxHealth = 50;
-   public int health=maxStamina;
+   public int health=maxHealth;
 
    public int shopKeepSpawn;
 
@@ -119,8 +119,7 @@ public class Player extends Entity {
 
    public void updateStamina(boolean sCharged, boolean isMoving)
    {
-       if (isMoving)
-       {
+
         if(stamina>=maxStamina)
         {
            stamina=maxStamina;
@@ -128,6 +127,7 @@ public class Player extends Entity {
         if (stamina<0)
            {
                   this.sCharged=false;
+                  gp.ui.stamina=gp.ui.staminadDepleted;
                   stamina=0;
            }
         if(sCharged)
@@ -159,12 +159,13 @@ public class Player extends Entity {
            if(stamina>=maxStamina)
            {
               this.sCharged=true;
+              gp.ui.stamina=gp.ui.staminaFull;
               speed=defaultSpeed*speedModifier;
            }
 
 
         }
-    }
+    
    }
    
    public void checkDirection()
@@ -209,10 +210,13 @@ public class Player extends Entity {
    }
 
     public void interactNPC(int npcIndex) {
-        if(npcIndex!=-1)
+        if (gp.keyH.spacePressed)
         {
-            gp.gameState = gp.DIALOGUE_STATE;
-            gp.npcs.get(npcIndex).speak();
+            if(npcIndex!=-1)
+            {
+                gp.gameState = gp.DIALOGUE_STATE;
+                gp.npcs.get(npcIndex).speak();
+            }
         }
     }
 

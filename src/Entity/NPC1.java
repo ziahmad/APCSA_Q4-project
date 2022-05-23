@@ -71,13 +71,8 @@ public class NPC1 extends Entity {
     
     public void speak()
     {
-      gp.ui.currentDialogue = dialogue.get(dialogueIndex);
-      dialogueIndex++;
-      if(dialogueIndex>=dialogue.size())
-      {
-         dialogueIndex=0;
-      }
-      System.out.println(dialogueIndex);
+      super.speak();
+
     }
    
 }

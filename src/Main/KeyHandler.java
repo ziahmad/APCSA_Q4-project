@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
 
    GamePanel gp;
-   public boolean upPressed, downPressed,leftPressed,rightPressed,shiftPressed;
+   public boolean upPressed, downPressed,leftPressed,rightPressed,shiftPressed,spacePressed;
    
    public KeyHandler(GamePanel gp)
    {
@@ -68,6 +68,8 @@ public class KeyHandler implements KeyListener{
             case KeyEvent.VK_ESCAPE:
                gp.gameState = gp.PAUSE_STATE;
                break;
+            case KeyEvent.VK_SPACE:
+               spacePressed = true;
          /**
           * to use later for other inputs
           case KeyEvent.VK_SHIFT:
@@ -131,6 +133,9 @@ public class KeyHandler implements KeyListener{
          case KeyEvent.VK_LEFT:
             leftPressed=false;
             break;
+         case KeyEvent.VK_SPACE:
+               spacePressed = false;
+               break;
          /**
           * to use later for other inputs
           case KeyEvent.VK_SHIFT:

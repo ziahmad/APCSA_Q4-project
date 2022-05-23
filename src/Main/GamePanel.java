@@ -17,7 +17,7 @@ import src.Tile.TileManager;
 public class GamePanel extends JPanel implements Runnable {
    //things needed for game to work
    TileManager tileM = new TileManager(this);
-   KeyHandler keyH = new KeyHandler(this);
+   public KeyHandler keyH = new KeyHandler(this);
    public UI ui = new UI(this);
    Thread gThread;
 
@@ -34,12 +34,14 @@ public class GamePanel extends JPanel implements Runnable {
    public final int PAUSE_STATE = 2; 
    public final int DIALOGUE_STATE = 3; 
 
+   int sideBarWidth=3*Consts.TILE_SIZE;
+
 
    //goal fps
    int fps = 60;
    public GamePanel()
    {
-      this.setPreferredSize(new Dimension(Consts.SCREEN_WIDTH,Consts.SCREEN_HEIGHT));
+      this.setPreferredSize(new Dimension(Consts.SCREEN_WIDTH+sideBarWidth,Consts.SCREEN_HEIGHT));
       this.setBackground(Color.BLACK);
       this.setDoubleBuffered(true);
       this.addKeyListener(keyH);
