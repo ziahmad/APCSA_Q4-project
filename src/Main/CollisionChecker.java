@@ -1,6 +1,8 @@
 package src.Main;
 
 
+import java.util.ArrayList;
+
 import src.Entity.Entity;
 import src.Entity.Player;
 import src.Objects.OBJ_Door;
@@ -99,9 +101,6 @@ public class CollisionChecker {
       double entityrightX = entity.solidArea.x+entity.solidArea.getWidth();
       double entitytopY = entity.solidArea.y;
       double entitybotY = entity.solidArea.y+entity.solidArea.getHeight();
-      
-//TODO:Major Issue, If you walk into an object with collision, you get stuck
-//moving backwards deosn't help becuase can cause abilyty to walk throuhg object
 
       for (SuperObject S : gp.obj) 
       {
@@ -179,6 +178,125 @@ public class CollisionChecker {
       }
 
       return -1;
+   }
+
+   //npc or monster collision
+   public int checkEntity(Entity entity, ArrayList<Entity> target)
+   {
+      double entityleftX = entity.solidArea.x;
+      double entityrightX = entity.solidArea.x+entity.solidArea.getWidth();
+      double entitytopY = entity.solidArea.y;
+      double entitybotY = entity.solidArea.y+entity.solidArea.getHeight();
+
+      for (Entity e2 : target) 
+      {
+         
+         if(entity.worldX==e2.worldX&&entity.worldY==e2.worldY)
+         {
+            
+            switch(entity.direction)
+            {
+               case"up":
+
+                  if(e2.solidArea.contains(entityleftX, entitytopY-entity.speed)||e2.solidArea.contains(entityrightX, entitytopY-entity.speed))
+                  {
+                     
+                        entity.collisionOn=true;
+                        return target.indexOf(e2);
+                  }
+                  break;
+               case"down":
+                  if(e2.solidArea.contains(entityleftX, entitybotY+entity.speed)||e2.solidArea.contains(entityrightX, entitybotY+entity.speed))
+                  {
+
+                        entity.collisionOn=true;
+
+                        return target.indexOf(e2);
+                  }
+                  
+                  break;
+               case"left":
+                  if(e2.solidArea.contains(entityleftX-entity.speed, entitytopY)||e2.solidArea.contains(entityleftX, entitybotY))
+                  {
+                        entity.collisionOn=true;
+
+                        return target.indexOf(e2);
+                  }
+                  break;
+               case"right":
+                  if(e2.solidArea.contains(entityrightX+entity.speed, entitytopY)||e2.solidArea.contains(entityrightX+entity.speed, entitybotY))
+                     {
+
+                        entity.collisionOn=true;
+
+                        return target.indexOf(e2);
+                  }
+                  break;
+            }
+         
+         }
+
+      }
+
+      return -1;
+   }
+
+   public void checkPlayer(Entity entity)
+   {
+
+      double entityleftX = entity.solidArea.x;
+      double entityrightX = entity.solidArea.x+entity.solidArea.getWidth();
+      double entitytopY = entity.solidArea.y;
+      double entitybotY = entity.solidArea.y+entity.solidArea.getHeight();
+
+      Entity e2 = gp.player; 
+      
+
+
+      if(entity.worldX==e2.worldX&&entity.worldY==e2.worldY)
+      {
+         
+         switch(entity.direction)
+         {
+            case"up":
+
+               if(e2.solidArea.contains(entityleftX, entitytopY-entity.speed)||e2.solidArea.contains(entityrightX, entitytopY-entity.speed))
+               {
+                  
+                     entity.collisionOn=true;
+                     
+               }
+               break;
+            case"down":
+               if(e2.solidArea.contains(entityleftX, entitybotY+entity.speed)||e2.solidArea.contains(entityrightX, entitybotY+entity.speed))
+               {
+
+                     entity.collisionOn=true;
+
+                     
+               }
+               
+               break;
+            case"left":
+               if(e2.solidArea.contains(entityleftX-entity.speed, entitytopY)||e2.solidArea.contains(entityleftX, entitybotY))
+               {
+                     entity.collisionOn=true;
+
+                     
+               }
+               break;
+            case"right":
+               if(e2.solidArea.contains(entityrightX+entity.speed, entitytopY)||e2.solidArea.contains(entityrightX+entity.speed, entitybotY))
+                  {
+
+                     entity.collisionOn=true;
+
+                     
+               }
+               break;
+         }
+      
+      }
    }
 
 

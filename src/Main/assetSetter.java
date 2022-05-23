@@ -1,5 +1,6 @@
 package src.Main;
 
+import src.Entity.*;
 import src.Objects.*;
 
 
@@ -27,6 +28,17 @@ public class assetSetter {
       
       //test
       
+      
+   }
+
+   public void setNPCs()
+   {
+      gp.npcs.add(new NPC1(gp, 41, 40));
+      gp.npcs.add(new NPC1(gp, 41, 40));
+      gp.npcs.add(new NPC2(gp, 40, 40));
+      gp.npcs.add(new NPC2(gp, 40, 40));
+      gp.npcs.add(new NPC3(gp, 40, 41));
+      gp.npcs.add(new NPC3(gp, 40, 41));
       
    }
 

@@ -15,7 +15,7 @@ import src.Main.KeyHandler;
 import src.Objects.*;
 
 public class Player extends Entity {
-   GamePanel gp;
+
    KeyHandler keyH;
 
    //speed
@@ -33,14 +33,17 @@ public class Player extends Entity {
    public int maxHealth = 50;
    public int health=maxStamina;
 
+   public int shopKeepSpawn;
+
    public Inventory inventory = new Inventory(true);
 
    //inventory
 
    //Constructor
-   public Player (GamePanel gPanel, KeyHandler kHandler)
+   public Player (GamePanel gp, KeyHandler kHandler)
     {
-        gp=gPanel;
+        super(gp);
+
         keyH=kHandler;
 
         
@@ -195,9 +198,19 @@ public class Player extends Entity {
       //object touch
       int objIndex =gp.cChecker.checkObject(this, true);
       pickUpObjects(objIndex);
+      //check NPC Collison
+      int npcIndex =gp.cChecker.checkEntity(this, gp.npcs);
+      interactNPC(npcIndex);
    }
 
-   public void move()
+    public void interactNPC(int npcIndex) {
+        if(npcIndex!=-1)
+        {
+            System.out.println("bump");
+        }
+    }
+
+public void move()
    {
       absX = screenX+(worldX*Consts.SCREEN_WIDTH);
       absY = screenY+(worldY*Consts.SCREEN_HEIGHT);
@@ -212,6 +225,7 @@ public class Player extends Entity {
                 {
                     screenY=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
                     worldY--;
+                    shopKeepSpawn = (int)(Math.random()*10);
                 }
                 break;
             case "down":
@@ -220,6 +234,7 @@ public class Player extends Entity {
                 {
                     screenY=(0)*Consts.TILE_SIZE;
                     worldY++;
+                    shopKeepSpawn = (int)(Math.random()*10);
                 }
                 break;
             case "left":
@@ -228,6 +243,7 @@ public class Player extends Entity {
                 {
                     screenX=(Consts.MAX_SCREEN_ROW-1)*Consts.TILE_SIZE;
                     worldX--;
+                    shopKeepSpawn = (int)(Math.random()*10);
                 }
                 break;
             case "right":
@@ -236,6 +252,7 @@ public class Player extends Entity {
                 {
                     screenX=(0)*Consts.TILE_SIZE;
                     worldX++;
+                    shopKeepSpawn = (int)(Math.random()*10);
                 }
                 break;
          }

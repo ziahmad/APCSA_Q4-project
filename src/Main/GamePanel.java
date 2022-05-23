@@ -8,6 +8,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import src.Entity.Entity;
+import src.Entity.NPC1;
 import src.Entity.Player;
 import src.Objects.OBJ_Bomb;
 import src.Objects.SuperObject;
@@ -16,14 +18,21 @@ import src.Tile.TileManager;
 public class GamePanel extends JPanel implements Runnable {
    //things needed for game to work
    TileManager tileM = new TileManager(this);
-   KeyHandler keyH = new KeyHandler();
-
+   KeyHandler keyH = new KeyHandler(this);
+   UI ui = new UI(this);
    Thread gThread;
-   public assetSetter aSetter = new assetSetter(this);
-   public ArrayList<SuperObject> obj=new ArrayList<>(0);
-   public CollisionChecker cChecker = new CollisionChecker(this);
-   public Player player = new Player(this, keyH);
 
+   public assetSetter aSetter = new assetSetter(this);
+   public CollisionChecker cChecker = new CollisionChecker(this);
+   
+   //entities and objects
+   public ArrayList<SuperObject> obj=new ArrayList<>(0);
+   public Player player = new Player(this, keyH);
+   public ArrayList<Entity> npcs = new ArrayList<>(0);
+   //game state
+   public int gameState;
+   public final int PLAY_STATE = 1; 
+   public final int PAUSE_STATE = 2; 
 
 
    //goal fps
@@ -39,6 +48,8 @@ public class GamePanel extends JPanel implements Runnable {
 
    public void setupGame() {
       aSetter.setObject();
+      aSetter.setNPCs();
+      gameState = PLAY_STATE;
    }
 
 
@@ -97,19 +108,23 @@ public class GamePanel extends JPanel implements Runnable {
    //tick
    public void update ()
    {
-      player.update();
-      for (int i= obj.size()-1; i>=0;i--) {
-         OBJ_Bomb b;
-         if(obj.get(i) instanceof OBJ_Bomb)
-         {
-            b=((OBJ_Bomb)(obj.get(i))).bombCountDown((OBJ_Bomb)obj.get(i));
-            if(b!=null)
-            {
-               obj.remove(i);
-            }
+      if(gameState == PLAY_STATE)
+      {
+         player.update();
+         //onbjects
+         updateObjects();
+         //NPC
+         for (Entity entity : npcs) {
+               entity.update();
          }
          
+      }else if ( gameState == PAUSE_STATE)
+      {
+
       }
+
+      
+      
 
    }
 
@@ -126,17 +141,38 @@ public class GamePanel extends JPanel implements Runnable {
          if(superObject.worldX==player.worldX&&superObject.worldY==player.worldY)
          superObject.draw(g2, this);
       }
-      
+      //npcs
+      for (Entity e : npcs) {
+         if(e.worldX==player.worldX&&e.worldY==player.worldY)
+         e.draw(g2);
+      }
 
       //then player
       player.draw(g2);
 
       //then ui
-     // ui.draw(g2);
+      ui.draw(g2);
       g2.dispose();//used to save on memory
 
    }
 
 
+   //update Objects
+   public void updateObjects()
+   {
+      for (int i= obj.size()-1; i>=0;i--) {
+         //updateBomb
+         if(obj.get(i) instanceof OBJ_Bomb)
+         {
+            OBJ_Bomb b;
+            b=((OBJ_Bomb)(obj.get(i))).bombCountDown((OBJ_Bomb)obj.get(i));
+            if(b!=null)
+            {
+               obj.remove(i);
+            }
+         }
+         
+      }
+   }
    
 }
