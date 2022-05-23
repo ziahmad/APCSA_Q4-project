@@ -36,6 +36,8 @@ public class Player extends Entity {
    public int health=maxHealth;
    public int damageWait=30;
 
+   public int actionWait = 20;
+
    public int shopKeepSpawn;
 
    public Inventory inventory = new Inventory(true);
@@ -112,11 +114,20 @@ public class Player extends Entity {
       
       isMoving =keyH.downPressed||keyH.rightPressed||keyH.leftPressed||keyH.upPressed;
 
+      if(damageWait<40)
+      {
         damageWait++;
+      }
           updateStamina(sCharged, isMoving);
           checkDirection();
           checkCollision();
           move();
+       doItem();
+
+       if(win)
+       {
+           gp.gameState=gp.WIN_STATE;
+       }
 
 
    
@@ -395,9 +406,9 @@ public class Player extends Entity {
            switch(Name)
            {
                case"hurt":
-                //if(damageWait>=30)
+                if(damageWait>=30)
                 {
-                    this.health-=25;//((Hurt)event).damage;
+                    this.health-=((Hurt)event).damage;
                    gp.events.set(index, null);
                    gp.events.remove(index);
                    System.out.println("ow");
@@ -414,7 +425,33 @@ public class Player extends Entity {
        }
    }
 
+   public SuperDropedItem useItem()
+   {
+       if(gp.keyH.enterPressed)
+       {
+           return (SuperDropedItem)inventory.equipped[1].type;
+       }
+       return null;
+   }
 
+   public void doItem()
+   {
+       
+    if(actionWait<30)
+        {
+        actionWait++;
+        }
+        
+    if(actionWait>20&&keyH.enterPressed)
+        {
+            this.gp.obj.add(new OBJ_Bomb((int)screenX/Consts.TILE_SIZE+worldX*Consts.MAX_SCREEN_COL, (int)screenY/Consts.TILE_SIZE+worldY*Consts.MAX_SCREEN_ROW, true));
+               // if (useItem()!=null)
+                {
+
+                }
+                actionWait=0;
+        }
+   }
 
    public void draw(Graphics2D g2)
    {

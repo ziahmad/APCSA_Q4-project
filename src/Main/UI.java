@@ -64,6 +64,17 @@ public class UI {
          drawSideBar(Consts.SCREEN_WIDTH,0,Consts.SCREEN_HEIGHT,gp.sideBarWidth);
          drawDialogueScreen();
       }
+      //winState
+      else if (gp.gameState==gp.WIN_STATE)
+      {
+         drawSideBar(Consts.SCREEN_WIDTH,0,Consts.SCREEN_HEIGHT,gp.sideBarWidth);
+         drawSubWindow(1*Consts.TILE_SIZE, 1*Consts.TILE_SIZE, gp.getWidth()-2*Consts.TILE_SIZE, gp.getHeight()-2*Consts.TILE_SIZE);
+         g2.setColor(Color.WHITE);
+         g2.setFont(arial_80b);
+         int x = getXForCenterText("YOU WIN!");
+         int y= gp.getHeight()/2;
+         g2.drawString("YOU WIN!",x,y);
+      }
    }
    public void drawSideBar(int x, int y, int height, int width)
    {
@@ -156,6 +167,6 @@ public class UI {
    public int getXForCenterText(String text)
    {
       int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-      return Consts.SCREEN_WIDTH/2-length/2;
+      return gp.getWidth()/2-length/2;
    }
 }

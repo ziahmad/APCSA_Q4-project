@@ -2,6 +2,7 @@ package src.Entity;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import src.Main.Consts;
@@ -202,6 +203,7 @@ public class Entity {
     }
 
         g2.drawImage(image,(int)(screenX*Consts.TILE_SIZE),(int)(screenY*Consts.TILE_SIZE),Consts.TILE_SIZE,Consts.TILE_SIZE,null);
+        g2.setColor(Color.BLACK);
         g2.draw(solidArea);
  
 

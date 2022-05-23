@@ -2,6 +2,7 @@ package src.Main;
 
 import src.Entity.*;
 import src.Events.Hurt;
+import src.Events.Win;
 import src.Objects.*;
 
 
@@ -22,6 +23,9 @@ public class assetSetter {
 
       //doors
       gp.obj.add(new OBJ_Door(5,3,0));
+         //finalDoor
+      gp.obj.add(new OBJ_Door(33,43,20));
+      //gp.obj.add(new OBJ_Key(33,42,20));
       
 
       //chests
@@ -63,6 +67,11 @@ public class assetSetter {
 
 
       
+   }
+
+   public void setEvents()
+   {
+      gp.events.add(new Win(33, 43));
    }
 
 }

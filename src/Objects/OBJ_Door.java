@@ -11,6 +11,7 @@ public class OBJ_Door extends SuperObject {
    public OBJ_Door(int worldCol, int worldRow, int keyLockPairing)
    {
       super(worldCol, worldRow);
+      this.keyLockPairing=keyLockPairing;
       try {
          unlockedDoor = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/TileObjects/unlockedDoor.png"));
       } catch (Exception e) {

@@ -35,6 +35,7 @@ public class GamePanel extends JPanel implements Runnable {
    public final int PLAY_STATE = 1; 
    public final int PAUSE_STATE = 2; 
    public final int DIALOGUE_STATE = 3; 
+   public final int WIN_STATE = 4; 
 
    int sideBarWidth=3*Consts.TILE_SIZE;
 
@@ -53,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
    public void setupGame() {
       aSetter.setObject();
       aSetter.setNPCs();
+      aSetter.setEvents();
       gameState = PLAY_STATE;
    }
 
@@ -123,6 +125,9 @@ public class GamePanel extends JPanel implements Runnable {
          player.update();
          
       }else if ( gameState == PAUSE_STATE)
+      {
+
+      }else if (gameState==WIN_STATE)
       {
 
       }
