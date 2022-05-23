@@ -2,12 +2,14 @@ package src.Main;
 
 import javax.swing.JPanel;
 
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import src.Events.*;
 import src.Entity.Entity;
 import src.Entity.Player;
 import src.Objects.OBJ_Bomb;
@@ -23,8 +25,8 @@ public class GamePanel extends JPanel implements Runnable {
 
    public assetSetter aSetter = new assetSetter(this);
    public CollisionChecker cChecker = new CollisionChecker(this);
-   
    //entities and objects
+   public ArrayList<Event> events = new ArrayList<>(0);
    public ArrayList<SuperObject> obj=new ArrayList<>(0);
    public Player player = new Player(this, keyH);
    public ArrayList<Entity> npcs = new ArrayList<>(0);
@@ -168,8 +170,13 @@ public class GamePanel extends JPanel implements Runnable {
          {
             OBJ_Bomb b;
             b=((OBJ_Bomb)(obj.get(i))).bombCountDown((OBJ_Bomb)obj.get(i));
-            if(b!=null)
+            if(b.counter==0)
             {
+               b.collision=false;
+               events.add(b.rect);
+            }if(b.explosionTime<=0)
+            {
+               events.remove(events.indexOf(b.rect));
                obj.remove(i);
             }
          }

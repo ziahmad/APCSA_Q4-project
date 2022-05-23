@@ -1,6 +1,7 @@
 package src.Main;
 
 import src.Entity.*;
+import src.Events.Hurt;
 import src.Objects.*;
 
 
@@ -27,6 +28,7 @@ public class assetSetter {
       gp.obj.add(new OBJ_Chest(3,3,1));
       
       //test
+      gp.obj.add(new OBJ_Bomb(40, 40 ,true));
       
       
    }
@@ -58,6 +60,7 @@ public class assetSetter {
       
       gp.npcs.add(new NPC3(gp, 40, 42));
       gp.npcs.get(5).dialogue.add("Who are you?");
+
 
       
    }

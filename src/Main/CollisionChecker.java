@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import src.Entity.Entity;
 import src.Entity.Player;
+import src.Events.Event;
 import src.Objects.OBJ_Door;
 import src.Objects.SuperObject;
 
@@ -300,4 +301,24 @@ public class CollisionChecker {
    }
 
 
+   public int checkEvent(Entity entity, boolean player )
+   {
+
+      for (Event e : gp.events) 
+      {
+         
+         if(entity.worldX==e.worldX&&entity.worldY==e.worldY)
+         {
+            if(e.solidArea.intersects(entity.solidArea)||e.solidArea.contains(entity.solidArea)||entity.solidArea.contains(e.solidArea))
+            {
+               return gp.events.indexOf(e);
+            }
+            
+         }
+         
+         
+
+      }
+      return -1;
+   }
 }

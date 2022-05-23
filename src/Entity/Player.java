@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
+import src.Events.*;
 import src.Inventory.Inventory;
 import src.Inventory.Item;
 import src.Main.Consts;
@@ -18,6 +19,7 @@ public class Player extends Entity {
 
    KeyHandler keyH;
 
+   public boolean win = false;
    //speed
    public double sprintScale = 2;
    public double defaultSpeed = 1*Consts.SCALE;
@@ -30,8 +32,9 @@ public class Player extends Entity {
    public double stamina=maxStamina;
    //health
    public boolean alive = true;
-   public int maxHealth = 50;
+   public int maxHealth = 100;
    public int health=maxHealth;
+   public int damageWait=30;
 
    public int shopKeepSpawn;
 
@@ -54,6 +57,7 @@ public class Player extends Entity {
 
     public void setDefaultValues ()
     {
+        
       //center of world
       worldX= Consts.WORLD_SCREENS_WIDTH/2;
       worldY = Consts.WORLD_SCREENS_HEIGHT/2;
@@ -108,6 +112,7 @@ public class Player extends Entity {
       
       isMoving =keyH.downPressed||keyH.rightPressed||keyH.leftPressed||keyH.upPressed;
 
+        damageWait++;
           updateStamina(sCharged, isMoving);
           checkDirection();
           checkCollision();
@@ -199,6 +204,9 @@ public class Player extends Entity {
       //object touch
       int objIndex =gp.cChecker.checkObject(this, true);
       pickUpObjects(objIndex);
+      //events
+      int eventIndex = gp.cChecker.checkEvent(this, true);
+        doEvent(eventIndex);
       //check NPC Collison
       
       if(isMoving)
@@ -373,6 +381,34 @@ public class Player extends Entity {
                        }
                    }
                    break;
+            }
+           
+       }
+   }
+
+   public void doEvent(int index)
+   {
+       if(index>=0)
+       {
+           String Name = gp.events.get(index).name;
+           Event event =gp.events.get(index);
+           switch(Name)
+           {
+               case"hurt":
+                //if(damageWait>=30)
+                {
+                    this.health-=25;//((Hurt)event).damage;
+                   gp.events.set(index, null);
+                   gp.events.remove(index);
+                   System.out.println("ow");
+                   Name="null";
+                   damageWait=0;
+                }
+                   break;
+               case"win":
+                   this.win=true;
+                   break;
+               
             }
            
        }

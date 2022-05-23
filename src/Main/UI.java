@@ -98,7 +98,7 @@ public class UI {
       //meter
       g2.setColor(health);
       HealthMeter.x = (int)(StaminaMeter.x+1.25*Consts.TILE_SIZE);
-      HealthMeter.height = (int)((gp.player.health/gp.player.maxHealth)*4*Consts.TILE_SIZE);
+      HealthMeter.height = (int)(((double)gp.player.health/gp.player.maxHealth)*4*Consts.TILE_SIZE);
       HealthMeter.y =8*Consts.SCALE;
       HealthMeter.width =Consts.TILE_SIZE/2;
       //bar

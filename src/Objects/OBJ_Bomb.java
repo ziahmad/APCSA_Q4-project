@@ -2,13 +2,22 @@ package src.Objects;
 
 import javax.imageio.ImageIO;
 
+import src.Events.Hurt;
+import src.Main.Consts;
+import src.Main.GamePanel;
+import src.Main.Window;
 
 import java.awt.image.BufferedImage;
 import java.awt.Color;
+import java.awt.Graphics2D;
 
 public class OBJ_Bomb extends SuperDropedItem{
    public int maxCounter =100;
    public int counter =maxCounter+50;
+   public int explosionTime=50;
+   int damage = 25;
+   public Hurt rect;
+   
 
    
    public OBJ_Bomb (int worldCol, int worldRow,boolean armed)
@@ -27,6 +36,7 @@ public class OBJ_Bomb extends SuperDropedItem{
       {
          image= hueShift(image, counter/100);
          collision=true;
+         rect = new Hurt(screenX+worldX*Consts.TILE_SIZE,screenY+worldY*Consts.TILE_SIZE, damage,3 ,3);
       }
 
 
@@ -35,20 +45,25 @@ public class OBJ_Bomb extends SuperDropedItem{
    public OBJ_Bomb bombCountDown(OBJ_Bomb bomb)
    {
       
-      if (counter<=0)
-      {
-         return bomb;
-      }
-      if(armed)
+      if(armed&&counter>=0)
       {
          counter--;
          image= hueShift(image, counter/maxCounter);
-      }else{
-         return null;
       }
-      return null;
+      if(counter==0){
+         collision=false;
+      }
+      if(counter<0)
+      {
+         explosionTime--;
+      }
+      if(explosionTime==0){
+         System.out.println("boom");
+      }
+      return bomb;
 
    }
+
 
    @Override
    public BufferedImage hueShift(BufferedImage bi, int shift)
@@ -83,6 +98,17 @@ public class OBJ_Bomb extends SuperDropedItem{
        }
       //
       return processed;  
+   }
+   @Override
+   public void draw(Graphics2D g2, GamePanel gp) {
+       // TODO Auto-generated method stub
+       if(counter>=0)
+       super.draw(g2, gp);
+       else if( explosionTime>=0)
+       {
+          g2.setColor(new Color (255,00,0,100));
+         g2.fill(rect.solidArea);
+       }
    }
 
 }
