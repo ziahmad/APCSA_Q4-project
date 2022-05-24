@@ -6,40 +6,42 @@ import javax.imageio.ImageIO;
 
 public class OBJ_Door extends SuperObject {
    public int keyLockPairing;
-   public boolean locked=false;
+   public boolean locked = false;
    public BufferedImage unlockedDoor;
-   public OBJ_Door(int worldCol, int worldRow, int keyLockPairing)
-   {
+
+   public OBJ_Door(int worldCol, int worldRow, int keyLockPairing) {
       super(worldCol, worldRow);
-      this.keyLockPairing=keyLockPairing;
+      this.keyLockPairing = keyLockPairing;
       try {
-         unlockedDoor = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/TileObjects/unlockedDoor.png"));
+         unlockedDoor = ImageIO
+               .read(getClass().getResourceAsStream("/resources/sprites/Objects/TileObjects/unlockedDoor.png"));
       } catch (Exception e) {
       }
-      
-      if(keyLockPairing>=0)
-         locked=true;
 
-      name="Door";
+      if (keyLockPairing >= 0)
+         locked = true;
+
+      name = "Door";
       try {
 
-            image = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/TileObjects/lockedDoor.png"));
-            collision=true;
-            image = hueShift(image, keyLockPairing);
+         image = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/TileObjects/lockedDoor.png"));
+         collision = true;
+         image = hueShift(image, keyLockPairing);
 
       } catch (Exception e) {
          e.printStackTrace();
       }
    }
-   public OBJ_Door(int worldCol, int worldRow)
-   {
+
+   public OBJ_Door(int worldCol, int worldRow) {
       super(worldCol, worldRow);
 
-      name="Door";
+      name = "Door";
       try {
-            image = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/TileObjects/unlockedDoor.png"));
-            collision=false;
-         
+         image = ImageIO
+               .read(getClass().getResourceAsStream("/resources/sprites/Objects/TileObjects/unlockedDoor.png"));
+         collision = false;
+
       } catch (Exception e) {
          e.printStackTrace();
       }

@@ -1,69 +1,64 @@
 package src.Main;
 
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 /**
  * 
  * controlls
  * 
  * 
  */
-public class KeyHandler implements KeyListener{
+public class KeyHandler implements KeyListener {
 
    GamePanel gp;
-   public boolean upPressed, downPressed,leftPressed,rightPressed,shiftPressed,spacePressed,enterPressed;
-   
-   public KeyHandler(GamePanel gp)
-   {
-      this.gp= gp;
+   public boolean upPressed, downPressed, leftPressed, rightPressed, shiftPressed, spacePressed, enterPressed;
+
+   public KeyHandler(GamePanel gp) {
+      this.gp = gp;
    }
-   
-   
-   
+
    @Override
    public void keyTyped(KeyEvent e) {
-      //wont be used
-      
+      // wont be used
+
    }
 
    @Override
    public void keyPressed(KeyEvent e) {
-      
+
       int code = e.getKeyCode();
-      if(gp.gameState==gp.PLAY_STATE)
-      {
-         switch(code)
-         {
-            //controls
+      if (gp.gameState == gp.PLAY_STATE) {
+         switch (code) {
+            // controls
             case (KeyEvent.VK_W):
-               upPressed=true;
+               upPressed = true;
                break;
             case KeyEvent.VK_S:
-               downPressed=true;
+               downPressed = true;
                break;
             case KeyEvent.VK_D:
-               rightPressed=true;
+               rightPressed = true;
                break;
             case KeyEvent.VK_A:
-               leftPressed=true;
+               leftPressed = true;
                break;
-               //increaes movement speed
+            // increaes movement speed
             case KeyEvent.VK_SHIFT:
-               shiftPressed=true;
+               shiftPressed = true;
                break;
-            //movewith arrow keys
+            // movewith arrow keys
             case (KeyEvent.VK_UP):
-               upPressed=true;
+               upPressed = true;
                break;
             case KeyEvent.VK_DOWN:
-               downPressed=true;
+               downPressed = true;
                break;
             case KeyEvent.VK_RIGHT:
-               rightPressed=true;
+               rightPressed = true;
                break;
             case KeyEvent.VK_LEFT:
-               leftPressed=true;
+               leftPressed = true;
                break;
             case KeyEvent.VK_ESCAPE:
                gp.gameState = gp.PAUSE_STATE;
@@ -72,85 +67,79 @@ public class KeyHandler implements KeyListener{
                spacePressed = true;
                break;
             case KeyEvent.VK_ENTER:
-               enterPressed =  true;
+               enterPressed = true;
                break;
-         /**
-          * to use later for other inputs
-          case KeyEvent.VK_SHIFT:
-             shiftPressed=true;
-             break;
-          */
-      }
-      }else if(gp.gameState==gp.PAUSE_STATE)
-      {
-         switch(code)
-         {
+            /**
+             * to use later for other inputs
+             * case KeyEvent.VK_SHIFT:
+             * shiftPressed=true;
+             * break;
+             */
+         }
+      } else if (gp.gameState == gp.PAUSE_STATE) {
+         switch (code) {
             case KeyEvent.VK_ESCAPE:
                gp.gameState = gp.PLAY_STATE;
                break;
          }
 
-      }else if(gp.gameState==gp.DIALOGUE_STATE)
-      {
-         switch(code)
-         {
+      } else if (gp.gameState == gp.DIALOGUE_STATE) {
+         switch (code) {
             case KeyEvent.VK_SPACE:
                gp.gameState = gp.PLAY_STATE;
                break;
-         } 
+         }
       }
    }
 
    @Override
    public void keyReleased(KeyEvent e) {
-      
 
       int code = e.getKeyCode();
-      
-      switch(code)
-      {
+
+      switch (code) {
          case KeyEvent.VK_W:
-            upPressed=false;
+            upPressed = false;
             break;
          case KeyEvent.VK_S:
-            downPressed=false;
+            downPressed = false;
             break;
          case KeyEvent.VK_D:
-            rightPressed=false;
+            rightPressed = false;
             break;
          case KeyEvent.VK_A:
-            leftPressed=false;
+            leftPressed = false;
             break;
          case KeyEvent.VK_SHIFT:
-            shiftPressed=false;
+            shiftPressed = false;
             break;
-         //movewith arrow keys
+         // movewith arrow keys
          case (KeyEvent.VK_UP):
-            upPressed=false;
+            upPressed = false;
             break;
          case KeyEvent.VK_DOWN:
-            downPressed=false;
+            downPressed = false;
             break;
          case KeyEvent.VK_RIGHT:
-            rightPressed=false;
+            rightPressed = false;
             break;
          case KeyEvent.VK_LEFT:
-            leftPressed=false;
+            leftPressed = false;
             break;
          case KeyEvent.VK_SPACE:
-               spacePressed = false;
-               break;
+            spacePressed = false;
+            break;
          case KeyEvent.VK_ENTER:
-               enterPressed = false;
-               break;
+            enterPressed = false;
+            break;
          /**
           * to use later for other inputs
-          case KeyEvent.VK_SHIFT:
-             shiftPressed=false;
-             break;
+          * case KeyEvent.VK_SHIFT:
+          * shiftPressed=false;
+          * break;
           */
       }
-      
+
    }
-   
+
 }

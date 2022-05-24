@@ -10,16 +10,13 @@ public class Inventory {
    public int coins;
    public ArrayList<OBJ_Key> keys = new ArrayList<>();
 
-   public Inventory(boolean Player)
-   {//TODO: add inventory
-      if(Player)
-      {
-         coins=0;
+   public Inventory(boolean Player) {// TODO: add inventory
+      if (Player) {
+         coins = 0;
          equipped = new Item[2];
          inventory = new Item[15];
          keys = new ArrayList<>();
-      }
-      else{
+      } else {
          inventory = new Item[9];
       }
    }

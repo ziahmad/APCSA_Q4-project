@@ -1,5 +1,7 @@
 package src.Main;
+
 import javax.swing.JFrame;
+
 /**
  * makes window that holds game
  * 
@@ -7,12 +9,10 @@ import javax.swing.JFrame;
  * 
  */
 
+public class Window extends JFrame {
 
-public class Window extends JFrame{
-   
-   public Window()
-   {
-      JFrame window =new JFrame();
+   public Window() {
+      JFrame window = new JFrame();
       window.setDefaultCloseOperation(EXIT_ON_CLOSE);
       window.setResizable(false);
       window.setTitle("Quarter 4 Project");
@@ -25,7 +25,8 @@ public class Window extends JFrame{
       window.setVisible(true);
 
       gPanel.setupGame();
-      gPanel.startGrameThread();;
+      gPanel.startGrameThread();
+      ;
    }
 
 }

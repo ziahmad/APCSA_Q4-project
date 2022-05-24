@@ -1,36 +1,22 @@
-package src.Objects;
+package src.Monster;
 
-import java.awt.image.BufferedImage;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.Color;
+import src.Entity.Entity;
 
-import src.Main.Consts;
 import src.Main.GamePanel;
 
-public class SuperObject {
+import java.awt.image.BufferedImage;
+import java.awt.Color;
 
-   public BufferedImage image;
-   public String name;
-   public boolean collision = false;
-   public int absX, absY;
-   public int worldX, worldY;
-   public int screenX, screenY;
-   public boolean hidden = false;
+public class Monster extends Entity {
 
-   public Rectangle solidArea;
+   public int maxHealth;
+   public int Health;
+   public int strength;
 
-   public SuperObject(int x, int y) {
+   public Monster(GamePanel gp, int x, int y, int Strength) {
+      super(gp, x, y);
+      strength = 5 * Strength;
 
-      absX = x * Consts.TILE_SIZE;
-      absY = y * Consts.TILE_SIZE;
-      screenX = x % Consts.MAX_SCREEN_COL;
-      screenY = y % Consts.MAX_SCREEN_ROW;
-      worldX = x / Consts.MAX_SCREEN_COL;
-      worldY = y / Consts.MAX_SCREEN_ROW;
-
-      solidArea = new Rectangle(screenX * Consts.TILE_SIZE, screenY * Consts.TILE_SIZE, Consts.TILE_SIZE,
-            Consts.TILE_SIZE);
    }
 
    public BufferedImage hueShift(BufferedImage bi, int shift) {
@@ -62,17 +48,6 @@ public class SuperObject {
       }
       //
       return processed;
-
-   }
-
-   public void draw(Graphics2D g2, GamePanel gp) {
-
-      if (!hidden) {
-         g2.drawImage(image, screenX * Consts.TILE_SIZE, screenY * Consts.TILE_SIZE, Consts.TILE_SIZE, Consts.TILE_SIZE,
-               null);
-      }
-
-      g2.draw(solidArea);
 
    }
 
