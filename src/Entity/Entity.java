@@ -54,7 +54,8 @@ public class Entity {
         worldY = y / Consts.MAX_SCREEN_ROW;
 
         solidArea = new Rectangle((int) (screenX * Consts.TILE_SIZE) + 3 * Consts.SCALE,
-                (int) (screenY * Consts.TILE_SIZE) + 3 * Consts.SCALE, Consts.TILE_SIZE - 5 * Consts.SCALE,Consts.TILE_SIZE - 8);
+                (int) (screenY * Consts.TILE_SIZE) + 3 * Consts.SCALE, Consts.TILE_SIZE - 5 * Consts.SCALE,
+                Consts.TILE_SIZE - 8);
     }
 
     public void setAction() {
@@ -72,13 +73,15 @@ public class Entity {
     public void update() {
         setAction();
 
-        absX = screenX + (worldX * Consts.SCREEN_WIDTH);
-        absY = screenY + (worldY * Consts.SCREEN_HEIGHT);
-        collisionOn = false;
-        gp.cChecker.checkTile(this);
-        gp.cChecker.checkObject(this, false);
-        gp.cChecker.checkEntity(this, gp.npcs);
-        gp.cChecker.checkPlayer(this);
+        if (gp.player.worldX == this.worldX && gp.player.worldY == this.worldY) {
+            absX = screenX + (worldX * Consts.SCREEN_WIDTH);
+            absY = screenY + (worldY * Consts.SCREEN_HEIGHT);
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+            gp.cChecker.checkObject(this, false);
+            gp.cChecker.checkEntity(this, gp.npcs);
+            gp.cChecker.checkPlayer(this);
+        }
 
         if (collisionOn && gp.player.worldX == this.worldX && gp.player.worldY == this.worldY) {
             switch (direction) {

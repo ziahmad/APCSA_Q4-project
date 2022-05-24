@@ -67,7 +67,7 @@ public class assetSetter {
 
       gp.monsters.add(new Monster1(gp, 4, 17, 2));
       gp.monsters.add(new Monster1(gp, 17, 18, 1));
-      
+
       gp.monsters.add(new Monster1(gp, 3, 72, 1));
       gp.monsters.add(new Monster1(gp, 6, 75, 2));
       gp.monsters.add(new Monster1(gp, 2, 69, 1));
@@ -89,16 +89,16 @@ public class assetSetter {
       gp.monsters.add(new Monster1(gp, 37, 63, 1));
       gp.monsters.add(new Monster1(gp, 38, 63, 2));
       gp.monsters.add(new Monster1(gp, 37, 70, 1));
-      
+
       gp.monsters.add(new Monster1(gp, 25, 70, 3));
-      
+
       gp.monsters.add(new Monster1(gp, 55, 70, 2));
       gp.monsters.add(new Monster1(gp, 55, 72, 2));
       gp.monsters.add(new Monster1(gp, 55, 74, 2));
       gp.monsters.add(new Monster1(gp, 55, 76, 2));
       gp.monsters.add(new Monster1(gp, 55, 78, 2));
       gp.monsters.add(new Monster1(gp, 55, 68, 2));
-      gp.monsters.add(new Monster1(gp, 55,66, 2));
+      gp.monsters.add(new Monster1(gp, 55, 66, 2));
       gp.monsters.add(new Monster1(gp, 55, 65, 2));
       gp.monsters.add(new Monster1(gp, 55, 70, 2));
       gp.monsters.add(new Monster1(gp, 55, 70, 2));
@@ -114,7 +114,7 @@ public class assetSetter {
       gp.monsters.add(new Monster1(gp, 4, 35, 1));
       gp.monsters.add(new Monster1(gp, 9, 40, 2));
       gp.monsters.add(new Monster1(gp, 4, 35, 2));
-      
+
       gp.monsters.add(new Monster1(gp, 2, 10, 10));
       gp.monsters.add(new Monster1(gp, 57, 55, 10));
 

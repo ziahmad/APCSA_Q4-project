@@ -21,14 +21,15 @@ public class Monster extends Entity {
 
    public Monster(GamePanel gp, int x, int y, int Strength) {
       super(gp, x, y);
-      maxHealth=15*Strength;
+      maxHealth = 15 * Strength;
       health = maxHealth;
       strength = 5 * Strength;
 
    }
-   public void dropItem()
-   {
-      gp.obj.add((SuperObject)(new OBJ_Coin((int)screenX+worldX*Consts.MAX_SCREEN_COL, (int)screenY+worldY*Consts.MAX_SCREEN_ROW, strength)));
+
+   public void dropItem() {
+      gp.obj.add((SuperObject) (new OBJ_Coin((int) screenX + worldX * Consts.MAX_SCREEN_COL,
+            (int) screenY + worldY * Consts.MAX_SCREEN_ROW, strength)));
    }
 
    public BufferedImage hueShift(BufferedImage bi, int shift) {
@@ -62,39 +63,38 @@ public class Monster extends Entity {
       return processed;
 
    }
+
    @Override
    public void update() {
       // TODO Auto-generated method stub
       super.update();
       int b = gp.cChecker.checkEvent(this);
       doEvent(b);
-      if(health<=0)
-      {
-         int i =gp.monsters.indexOf(this);
+      if (health <= 0) {
+         int i = gp.monsters.indexOf(this);
          gp.monsters.remove(i);
          dropItem();
       }
-      if(damageWait<30)
-      {
+      if (damageWait < 30) {
          damageWait++;
       }
    }
 
    public void doEvent(int index) {
       if (index >= 0) {
-          String Name = gp.events.get(index).name;
-          Event event = gp.events.get(index);
-          switch (Name) {
-              case "hurt":
-                  if (damageWait >= 10) {
-                      this.health -= ((Hurt) event).damage;
-                      damageWait = 0;
-                  }
-                  break;
+         String Name = gp.events.get(index).name;
+         Event event = gp.events.get(index);
+         switch (Name) {
+            case "hurt":
+               if (damageWait >= 10) {
+                  this.health -= ((Hurt) event).damage;
+                  damageWait = 0;
+               }
+               break;
 
-          }
+         }
 
       }
-  }
+   }
 
 }

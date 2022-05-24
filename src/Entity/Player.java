@@ -75,6 +75,7 @@ public class Player extends Entity {
                 10 * Consts.SCALE);
         // starts fcaing downwards
         direction = "down";
+        inventory.coins = 100;
     }
 
     public void getPlayerImage() {
@@ -124,13 +125,11 @@ public class Player extends Entity {
             alive = false;
             gp.gameState = gp.LOSE_STATE;
         }
-        if(health<maxHealth)
-        {
+        if (health < maxHealth) {
             regenCount++;
-            if(regenCount>30)
-            {
-                health+=1;
-                regenCount=0;
+            if (regenCount > 30) {
+                health += 1;
+                regenCount = 0;
             }
         }
 
@@ -199,10 +198,10 @@ public class Player extends Entity {
         // events
         int eventIndex = gp.cChecker.checkEvent(this);
         doEvent(eventIndex);
-        //monster
+        // monster
         int monnsterIndex = gp.cChecker.checkMonster(this);
         doMonsterEvent(monnsterIndex);
-        //monster
+        // monster
         // check NPC Collison
 
         if (isMoving) {
@@ -296,12 +295,11 @@ public class Player extends Entity {
                     gp.obj.remove(index);
                     break;
                 case "Coin":
-                    inventory.coins+=((OBJ_Coin)object).quantity/5;
+                    inventory.coins += ((OBJ_Coin) object).quantity / 5;
                     gp.obj.set(index, null);
                     gp.obj.remove(index);
-                    if(inventory.coins>=100)
-                    {
-                        gp.ui.messageOn=true;
+                    if (inventory.coins >= 100) {
+                        gp.ui.messageOn = true;
                         gp.obj.add(new OBJ_Key(40, 40, 20));
                     }
                     break;
@@ -331,7 +329,11 @@ public class Player extends Entity {
                                 ((OBJ_Chest) object).locked = false;
                                 int i = inventory.keys.indexOf(key);
                                 inventory.keys.remove(i);
-                                inventory.coins+=20;
+                                inventory.coins += 20;
+                                if (inventory.coins >= 100) {
+                                    gp.ui.messageOn = true;
+                                    gp.obj.add(new OBJ_Key(40, 40, 20));
+                                }
                                 break;
                             }
                         }
@@ -393,20 +395,20 @@ public class Player extends Entity {
 
         }
     }
+
     public void doMonsterEvent(int index) {
         if (index >= 0) {
             String Name = gp.monsters.get(index).name;
             Monster event = gp.monsters.get(index);
-                    if (damageWait >= 30) {
-                        this.health -= event.strength;
-                        System.out.println("ow");
-                        
-                        damageWait = 0;
-                    }
+            if (damageWait >= 30) {
+                this.health -= event.strength;
+                System.out.println("ow");
+
+                damageWait = 0;
+            }
 
         }
 
-    
     }
 
     public SuperDropedItem useItem() {
