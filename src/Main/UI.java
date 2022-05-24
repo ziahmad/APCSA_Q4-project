@@ -5,16 +5,19 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.BasicStroke;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
 
 public class UI {
    GamePanel gp;
    Graphics2D g2;
-   Font arial_32, arial_40, arial_80b;
-   public String message = "";
+   Font arial_32,arial_30, arial_40, arial_80b;
+   public Boolean messageOn = false;
    public boolean gameFinished = false;
    public String currentDialogue = "";
    // sidebar
-   Color sidebarColor = new Color(220, 200, 150);
+   Color sidebarColor = new Color(220, 200, 170);
    Color sideBarBoarder = new Color(170, 140, 10);
    public Rectangle sidebar = new Rectangle();
    // meters
@@ -27,11 +30,13 @@ public class UI {
    Color health = Color.red;
    public Rectangle Healthbar = new Rectangle();
    public Rectangle HealthMeter = new Rectangle();
+   
 
    public UI(GamePanel gp) {
       this.gp = gp;
 
       arial_32 = new Font("Arial", Font.PLAIN, 20);
+      arial_30 = new Font("Arial", Font.PLAIN, 25);
       arial_40 = new Font("Arial", Font.PLAIN, 40);
       arial_80b = new Font("Arial", Font.BOLD, 80);
 
@@ -45,6 +50,12 @@ public class UI {
       // playSTate
       if (gp.gameState == gp.PLAY_STATE) {
          drawSideBar(Consts.SCREEN_WIDTH, 0, Consts.SCREEN_HEIGHT, gp.sideBarWidth);
+         g2.setFont(arial_40);
+         g2.setColor(Color.WHITE);
+         if(messageOn)
+         {
+            g2.drawString("A Key has Spawned in the Center", Consts.TILE_SIZE/2,Consts.TILE_SIZE*5);
+         }
       }
       // pauseState
       else if (gp.gameState == gp.PAUSE_STATE) {
@@ -124,6 +135,39 @@ public class UI {
       g2.setStroke(new BasicStroke(2));
       g2.draw(Healthbar);
       g2.fill(HealthMeter);
+
+      //money
+      int menuCoinX = sidebar.x + strokewidth + 4 * Consts.SCALE ;
+      int menuCoinY = Staminabar.y+Staminabar.height+Consts.TILE_SIZE;
+      BufferedImage coin =null;
+      try {
+         coin= ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/DroppedItem/coins.png"));  
+      } catch (Exception e) {
+      }
+      g2.drawImage(coin, menuCoinX,menuCoinY,Consts.TILE_SIZE,Consts.TILE_SIZE,null);
+      g2.setColor(Color.BLACK);
+      g2.setFont(arial_30);
+      g2.drawString("X"+""+gp.player.inventory.coins,(int)(menuCoinX+1.25*Consts.TILE_SIZE), menuCoinY+25);
+      //sword
+      int menuSwordX = sidebar.x + strokewidth + 4 * Consts.SCALE ;
+      int menuSwordY = Staminabar.y+Staminabar.height+3*Consts.TILE_SIZE;
+      BufferedImage Sword =null;
+      try {
+         //Sword= ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/MenuItems/sword.png"));  
+      } catch (Exception e) {
+      }
+      g2.drawImage(Sword, menuSwordX,menuSwordY,2*Consts.TILE_SIZE,2*Consts.TILE_SIZE,null);
+
+      //sword
+      int menuBombX = sidebar.x + strokewidth + 4 * Consts.SCALE ;
+      int menuBombY = Staminabar.y+Staminabar.height+6*Consts.TILE_SIZE;
+      BufferedImage Bomb =null;
+      try {
+         Bomb= ImageIO.read(getClass().getResourceAsStream("/resources/sprites/Objects/DroppedItem/bomb.png"));  
+      } catch (Exception e) {
+      }
+      g2.drawImage(Bomb, menuBombX,menuBombY,2*Consts.TILE_SIZE,2*Consts.TILE_SIZE,null);
+      
 
    }
 

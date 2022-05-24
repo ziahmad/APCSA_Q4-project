@@ -40,8 +40,8 @@ public class assetSetter {
       gp.npcs.get(0).dialogue.add("Please save us!");
 
       gp.npcs.add(new NPC1(gp, 4, 3));
-      gp.npcs.get(1).dialogue.add("I left my daughter's boat in here.\n...");
-      gp.npcs.get(1).dialogue.add("When I came to get it back, the door \nlocked on me!'n'...");
+      gp.npcs.get(1).dialogue.add("I left my daughter's boat in here.\nI left my life savings here too.\n...");
+      gp.npcs.get(1).dialogue.add("When I came to get it back, the door \nlocked on me!...");
       gp.npcs.get(1).dialogue.add("The key she hid may help with the zombies.");
 
       gp.npcs.add(new NPC2(gp, 40, 40));
@@ -63,6 +63,61 @@ public class assetSetter {
 
    public void setupMonsters() {
       gp.monsters.add(new Monster1(gp, 10, 2, 2));
+      gp.monsters.add(new Monster1(gp, 39, 32, 1));
+
+      gp.monsters.add(new Monster1(gp, 4, 17, 2));
+      gp.monsters.add(new Monster1(gp, 17, 18, 1));
+      
+      gp.monsters.add(new Monster1(gp, 3, 72, 1));
+      gp.monsters.add(new Monster1(gp, 6, 75, 2));
+      gp.monsters.add(new Monster1(gp, 2, 69, 1));
+      gp.monsters.add(new Monster1(gp, 15, 64, 1));
+      gp.monsters.add(new Monster1(gp, 10, 18, 1));
+      gp.monsters.add(new Monster1(gp, 20, 17, 2));
+      gp.monsters.add(new Monster1(gp, 19, 19, 2));
+      gp.monsters.add(new Monster1(gp, 19, 19, 1));
+      gp.monsters.add(new Monster1(gp, 19, 19, 2));
+      gp.monsters.add(new Monster1(gp, 19, 19, 1));
+
+      gp.monsters.add(new Monster1(gp, 33, 14, 1));
+      gp.monsters.add(new Monster1(gp, 37, 19, 2));
+      gp.monsters.add(new Monster1(gp, 48, 22, 1));
+      gp.monsters.add(new Monster1(gp, 35, 64, 1));
+      gp.monsters.add(new Monster1(gp, 36, 20, 1));
+      gp.monsters.add(new Monster1(gp, 58, 23, 2));
+      gp.monsters.add(new Monster1(gp, 54, 40, 2));
+      gp.monsters.add(new Monster1(gp, 37, 63, 1));
+      gp.monsters.add(new Monster1(gp, 38, 63, 2));
+      gp.monsters.add(new Monster1(gp, 37, 70, 1));
+      
+      gp.monsters.add(new Monster1(gp, 25, 70, 3));
+      
+      gp.monsters.add(new Monster1(gp, 55, 70, 2));
+      gp.monsters.add(new Monster1(gp, 55, 72, 2));
+      gp.monsters.add(new Monster1(gp, 55, 74, 2));
+      gp.monsters.add(new Monster1(gp, 55, 76, 2));
+      gp.monsters.add(new Monster1(gp, 55, 78, 2));
+      gp.monsters.add(new Monster1(gp, 55, 68, 2));
+      gp.monsters.add(new Monster1(gp, 55,66, 2));
+      gp.monsters.add(new Monster1(gp, 55, 65, 2));
+      gp.monsters.add(new Monster1(gp, 55, 70, 2));
+      gp.monsters.add(new Monster1(gp, 55, 70, 2));
+      gp.monsters.add(new Monster1(gp, 55, 70, 2));
+      gp.monsters.add(new Monster1(gp, 55, 70, 2));
+      gp.monsters.add(new Monster1(gp, 55, 70, 2));
+
+      gp.monsters.add(new Monster1(gp, 4, 35, 2));
+      gp.monsters.add(new Monster1(gp, 4, 35, 1));
+      gp.monsters.add(new Monster1(gp, 14, 40, 2));
+      gp.monsters.add(new Monster1(gp, 4, 35, 1));
+      gp.monsters.add(new Monster1(gp, 6, 35, 2));
+      gp.monsters.add(new Monster1(gp, 4, 35, 1));
+      gp.monsters.add(new Monster1(gp, 9, 40, 2));
+      gp.monsters.add(new Monster1(gp, 4, 35, 2));
+      
+      gp.monsters.add(new Monster1(gp, 2, 10, 10));
+      gp.monsters.add(new Monster1(gp, 57, 55, 10));
+
    }
 
    public void setEvents() {

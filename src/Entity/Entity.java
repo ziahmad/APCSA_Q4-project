@@ -54,8 +54,7 @@ public class Entity {
         worldY = y / Consts.MAX_SCREEN_ROW;
 
         solidArea = new Rectangle((int) (screenX * Consts.TILE_SIZE) + 3 * Consts.SCALE,
-                (int) (screenY * Consts.TILE_SIZE) + 3 * Consts.SCALE, Consts.TILE_SIZE - 5 * Consts.SCALE,
-                Consts.TILE_SIZE - 8);
+                (int) (screenY * Consts.TILE_SIZE) + 3 * Consts.SCALE, Consts.TILE_SIZE - 5 * Consts.SCALE,Consts.TILE_SIZE - 8);
     }
 
     public void setAction() {

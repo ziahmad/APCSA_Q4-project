@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import src.Entity.Entity;
 import src.Entity.Player;
 import src.Events.Event;
+import src.Monster.Monster;
 import src.Objects.OBJ_Door;
 import src.Objects.SuperObject;
 
@@ -263,7 +264,7 @@ public class CollisionChecker {
       }
    }
 
-   public int checkEvent(Entity entity, boolean player) {
+   public int checkEvent(Entity entity) {
 
       for (Event e : gp.events) {
 
@@ -271,6 +272,22 @@ public class CollisionChecker {
             if (e.solidArea.intersects(entity.solidArea) || e.solidArea.contains(entity.solidArea)
                   || entity.solidArea.contains(e.solidArea)) {
                return gp.events.indexOf(e);
+            }
+
+         }
+
+      }
+      return -1;
+   }
+
+   public int checkMonster(Entity entity) {
+
+      for (Monster e : gp.monsters) {
+
+         if (entity.worldX == e.worldX && entity.worldY == e.worldY) {
+            if (e.solidArea.intersects(entity.solidArea) || e.solidArea.contains(entity.solidArea)
+                  || entity.solidArea.contains(e.solidArea)) {
+               return gp.monsters.indexOf(e);
             }
 
          }

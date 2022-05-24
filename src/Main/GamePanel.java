@@ -119,7 +119,12 @@ public class GamePanel extends JPanel implements Runnable {
             entity.update();
          }
          for (Monster entity : monsters) {
+            int s = monsters.size();
             entity.update();
+            if(s>monsters.size())
+            {
+               break;
+            }
          }
          player.update();
 

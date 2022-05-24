@@ -11,8 +11,8 @@ import java.awt.Graphics2D;
 
 public class OBJ_Bomb extends SuperDropedItem {
    public int maxCounter = 100;
-   public int counter = maxCounter + 50;
-   public int explosionTime = 50;
+   public int counter = maxCounter;
+   public int explosionTime = 20;
    int damage = 25;
    public Hurt rect;
 
