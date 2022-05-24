@@ -72,7 +72,7 @@ public class SuperObject {
                null);
       }
 
-      g2.draw(solidArea);
+      //g2.draw(solidArea);
 
    }
 

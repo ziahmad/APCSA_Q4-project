@@ -75,7 +75,7 @@ public class Player extends Entity {
                 10 * Consts.SCALE);
         // starts fcaing downwards
         direction = "down";
-        inventory.coins = 100;
+
     }
 
     public void getPlayerImage() {
@@ -488,7 +488,7 @@ public class Player extends Entity {
 
         g2.drawImage(image, (int) screenX, (int) screenY, Consts.TILE_SIZE, Consts.TILE_SIZE, null);
         g2.setColor(Color.BLUE);
-        g2.draw(solidArea);
+        //g2.draw(solidArea);
 
     }
 

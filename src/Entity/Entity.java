@@ -194,7 +194,7 @@ public class Entity {
         g2.drawImage(image, (int) (screenX * Consts.TILE_SIZE), (int) (screenY * Consts.TILE_SIZE), Consts.TILE_SIZE,
                 Consts.TILE_SIZE, null);
         g2.setColor(Color.BLACK);
-        g2.draw(solidArea);
+        //g2.draw(solidArea);
 
     }
 }
