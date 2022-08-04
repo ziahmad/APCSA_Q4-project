@@ -4,7 +4,7 @@ but I'm not going to. It's more or less in a working state. in the files there m
 I ran out of time. The Final winstate was slapped on at the end becuase that was part of the project requirements.
 
 Controls are WASD to move up/left/down/right respectively. The arrow keys work too. SHIFT to sprint ENTER to place bombs
-and SPACE to talk to NPCs (they aren't terribly useful like they wer supposed to be). 
+and SPACE to talk to NPCs (they aren't terribly useful like they were supposed to be). 
 
 get 100 coins to win, theres more than enough around.
 
