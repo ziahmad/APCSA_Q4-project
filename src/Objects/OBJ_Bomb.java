@@ -88,7 +88,6 @@ public class OBJ_Bomb extends SuperDropedItem {
 
    @Override
    public void draw(Graphics2D g2, GamePanel gp) {
-      // TODO Auto-generated method stub
       if (counter >= 0)
          super.draw(g2, gp);
       else if (explosionTime >= 0) {

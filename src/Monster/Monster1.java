@@ -54,7 +54,6 @@ public class Monster1 extends Monster {
 
    @Override
    public void setAction() {
-      // TODO Auto-generated method stub
 
       double dx = ((gp.player.screenX + gp.player.solidArea.width / 2) / Consts.TILE_SIZE - this.screenX);
       double dy = ((gp.player.screenY + gp.player.solidArea.height / 2) / Consts.TILE_SIZE - this.screenY);

@@ -8,7 +8,6 @@ public class SuperDropedItem extends SuperObject {
 
    public SuperDropedItem(int worldCol, int worldRow) {
       super(worldCol, worldRow);
-      // TODO Auto-generated constructor stub
    }
 
 }

@@ -66,7 +66,6 @@ public class Monster extends Entity {
 
    @Override
    public void update() {
-      // TODO Auto-generated method stub
       super.update();
       int b = gp.cChecker.checkEvent(this);
       doEvent(b);
