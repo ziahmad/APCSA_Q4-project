@@ -1,1 +1,4 @@
 *.jar
+DS_Store
+resources/onlinesaves/*
+.*/
