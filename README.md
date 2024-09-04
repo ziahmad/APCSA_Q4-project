@@ -7,7 +7,9 @@ I ran out of time. The Final winstate was slapped on at the end becuase that was
 ## Build
 
 Build with Gradle
+
 run gradlew build in the root directory
+
 built jar will be in build/libs
 
 ---
