@@ -35,7 +35,15 @@ java {
 application {
     // Define the main class for the application.
     mainClass = 'apcsa_q4.project.Main.Main'
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClass
+    }
 }
+
+}
+
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
