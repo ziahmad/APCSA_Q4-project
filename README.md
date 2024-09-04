@@ -13,7 +13,7 @@ run gradlew build in the root directory
 
 built jar will be in build/libs
 
-## Game Controlles
+## Game Controls
 
 Controls are WASD to move up/left/down/right respectively. The arrow keys work too. SHIFT to sprint ENTER to place bombs
 and SPACE to talk to NPCs (they aren't terribly useful like they were supposed to be). 
