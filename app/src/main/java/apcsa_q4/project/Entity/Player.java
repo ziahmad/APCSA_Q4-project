@@ -398,7 +398,7 @@ public class Player extends Entity {
 
     public void doMonsterEvent(int index) {
         if (index >= 0) {
-            String Name = gp.monsters.get(index).name;
+            //String Name = gp.monsters.get(index).name;
             Monster event = gp.monsters.get(index);
             if (damageWait >= 30) {
                 this.health -= event.strength;
